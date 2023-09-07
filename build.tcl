@@ -1,6 +1,3 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i tclsh -p tcl-8_5 smu
-
 #
 # Utilities
 #

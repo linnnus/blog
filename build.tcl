@@ -106,7 +106,7 @@ proc atom_xml index {
 	set host "linus.onl"
 	set proto http
 	set url "$proto://$host/atom.xml"
-	set username "Linus"
+	set authorname "Linus"
 	set first_commit [exec git log --pretty=format:%ai . | cut -d " " -f1 | tail -1]
 
 	append result "<?xml version=\"1.0\" encoding=\"utf-8\"?>
@@ -115,7 +115,7 @@ proc atom_xml index {
 	<link href=\"$url\" rel=\"self\" />
 	<updated>[exec date --iso=seconds]</updated>
 	<author>
-		<name>[exec git config user.name]</name>
+		<name>$authorname</name>
 	</author>
 	<id>tag:$host,[normalize_git_timestamp $first_commit]:default-atom-feed</id>"
 

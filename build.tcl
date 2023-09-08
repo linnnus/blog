@@ -170,14 +170,14 @@ proc make_index directory {
 	return [lsort -index 2 -decreasing $index]
 }
 
-file mkdir build/posts
+file mkdir _build/posts
 
 set index [make_index posts]
 
-puts [open build/atom.xml w] [atom_xml $index]
+puts [open _build/atom.xml w] [atom_xml $index]
 
 foreach path [glob pages/*.md] {
-	set out_path [string map {.md .html pages/ build/} $path]
+	set out_path [string map {.md .html pages/ _build/} $path]
 	set f [open $out_path w]
 	if {$path eq "pages/index.md"} {
 		puts $f [index_html $path $index]
@@ -188,7 +188,7 @@ foreach path [glob pages/*.md] {
 }
 
 foreach path [glob posts/*.md] {
-	set out_path [string map {.md .html posts/ build/posts/} $path]
+	set out_path [string map {.md .html posts/ _build/posts/} $path]
 	set f [open $out_path w]
 	puts $f [page_html $path]
 	close $f

@@ -1,5 +1,5 @@
 all:
-	./build.tcl
+	tclsh build.tcl
 
 clean:
 	rm -rf build/

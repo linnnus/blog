@@ -48,14 +48,28 @@ proc extract_markdown_title path {
 
 proc expand_bang_directives path {
 	set f [open $path]
+	set command ""
 	while {[gets $f line] >= 0} {
-		if {[regexp -line {^!! (.*)} $line -> command]} {
-			append result [exec /bin/sh -c $command]
+		if {[regexp -line {^!! (.*)} $line -> match]} {
+			append command $match\n
 		} else {
+			# We've just reached a normal line. If this line follows a command line, we
+			# should evaluate it.
+			if {[string length $command] != 0} {
+				append result [exec /bin/sh -c $command]
+				set command ""
+			}
+
 			append result $line
 		}
 		append result \n
 	}
+
+	# If the file ends on a command line...
+	if {[string length $command] != 0} {
+		append result [exec /bin/sh -c $command]
+	}
+
 	close $f
 	return $result
 }

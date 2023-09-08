@@ -9,3 +9,9 @@ Watch this! I'll do it again. The current working directory is...
 ```sh
 !! pwd
 ```
+
+Here's a list of the numbers 1-3.
+
+!! for x in 1 2 3; do
+!!   echo "- $x"
+!! done

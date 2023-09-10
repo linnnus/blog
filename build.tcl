@@ -22,10 +22,6 @@ proc escape_html raw {
 	return [string map $html_entities $raw]
 }
 
-proc render_markdown path {
-	return [exec smu << [expand_bang_directives $path]]
-}
-
 # 
 proc normalize_git_timestamp ts {
 	return [regsub T.* $ts {}]
@@ -61,8 +57,8 @@ proc expand_bang_directives path {
 			}
 
 			append result $line
+			append result \n
 		}
-		append result \n
 	}
 
 	# If the file ends on a command line...
@@ -72,6 +68,10 @@ proc expand_bang_directives path {
 
 	close $f
 	return $result
+}
+
+proc render_markdown path {
+	return [exec smu << [expand_bang_directives $path]]
 }
 
 #

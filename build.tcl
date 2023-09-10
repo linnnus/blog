@@ -164,12 +164,13 @@ proc make_index directory {
 	foreach path [glob $directory/*.md] {
 		set commit_times [exec git log --pretty=format:%aI $path 2>/dev/null]
 		set title   [?? [extract_markdown_title $path] "No title"]
+		# NOTE: Filename becomes the slug, so make sure not to rename, when retitling!
 		set id [file rootname [lindex [file split $path] end]]
 		set created [?? [lindex $commit_times end] "draft"]
 		set updated [?? [lindex $commit_times 0]   "draft"]
 		lappend index [list $path $title $id $created $updated]
 	}
-	return [lsort -index 2 -decreasing $index]
+	return [lsort -index 3 -decreasing $index]
 }
 
 file delete -force _build

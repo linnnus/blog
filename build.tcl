@@ -170,6 +170,7 @@ proc make_index directory {
 	return [lsort -index 2 -decreasing $index]
 }
 
+file delete -force _build
 file mkdir _build/posts
 
 set index [make_index posts]

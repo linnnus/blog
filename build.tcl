@@ -86,6 +86,7 @@ proc index_html {foreword_path index} {
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $foreword_path] "Unnamed blog"]</title>
+		<link rel=\"stylesheet\" href=\"/assets/site.css\">
 	</head>
 	<body>
 		[render_markdown $foreword_path]"
@@ -109,6 +110,7 @@ proc page_html path {
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
+		<link rel=\"stylesheet\" href=\"/assets/site.css\">
 	</head>
 	<body>
 		[render_markdown $path]
@@ -194,3 +196,5 @@ foreach path [glob posts/*.md] {
 	puts $f [page_html $path]
 	close $f
 }
+
+file copy assets/ _build/

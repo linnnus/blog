@@ -4,7 +4,7 @@ pkgs.mkShell {
   name = "dev-shell";
   buildInputs = with pkgs; [
     # Used by build script
-    tcl
+    tcl-8_5
     smu
     git
     coreutils-full

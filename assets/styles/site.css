@@ -15,5 +15,10 @@ h1, h2, h3{
 	font-family: "helvetica neue", helvetica, sans-serif;
 }
 
+footer {
+	text-align: center;
+	font-size: small;
+}
+
 a { color: #ae7b37; }
 a:visited { color: inherit; }

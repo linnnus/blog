@@ -159,6 +159,11 @@ proc page_html {path index} {
 	</head>
 	<body>
 		<main>[render_markdown $path [dict create index $index]]</main>
+		<footer>
+			<a href=\"/\">Go to index</a> |
+			Source available on <a href=\"https://github.com/linnnus/linus.onl\">Github</a> |
+			Made with &#x1F468;&#x200D;&#x1F9AF; by Linus
+		</footer>
 	</body>
 </html>"
 }

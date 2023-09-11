@@ -115,8 +115,8 @@ proc collect_emissions {code {env {}}} {
 
 	# Set up `emit' and `emitln' so child interpreter can append to output.
 	set accumulator {}
-	proc emit txt { uplevel 1 [list append accumulator $txt] }
-	proc emitln txt { emit "$txt\n" }
+	proc emit   txt { uplevel 1 [list append accumulator $txt]   }
+	proc emitln txt { uplevel 1 [list append accumulator $txt\n] }
 	interp alias $interpreter emit {} emit
 	interp alias $interpreter emitln {} emitln
 

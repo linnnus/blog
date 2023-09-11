@@ -70,8 +70,20 @@ proc expand_bang_directives path {
 	return $result
 }
 
-proc render_markdown path {
-	return [exec smu << [expand_bang_directives $path]]
+proc render_markdown {path {env {}}} {
+	set result [expand_bang_directives $path]
+
+	# $env contains a list of variable names in the caller's scope which
+	# can be substituted using {{var}} syntax in the post body.
+	foreach var $env {
+		set value [uplevel 1 set $var]
+		regsub -nocase -all -- "{{$var}}" $result $value result
+	}
+
+	# Render markdown
+	set result [exec smu << $result]
+
+	return $result
 }
 
 #
@@ -89,16 +101,17 @@ proc index_html {foreword_path index} {
 		<link rel=\"stylesheet\" href=\"/assets/site.css\">
 		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
 	</head>
-	<body>
-		[render_markdown $foreword_path]"
+	<body>"
 
-	append result {<ul>}
-	foreach post $index {
+	append recent_posts_html {<ul>}
+	foreach post [lrange $index 0 3] {
 		lassign $post path title id created updated
 		set link [string map {.md .html} $path]
-		append result "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>\n"
+		append recent_posts_html "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>\n"
 	}
-	append result {</ul>}
+	append recent_posts_html {</ul>}
+
+ 	append result "<main>[render_markdown $foreword_path [list recent_posts_html]]</main>"
 
 	append result </body></html>
 	return $result
@@ -115,7 +128,7 @@ proc page_html path {
 		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
 	</head>
 	<body>
-		[render_markdown $path]
+		<main>[render_markdown $path]</main>
 	</body>
 </html>"
 }

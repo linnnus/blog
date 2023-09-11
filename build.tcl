@@ -154,8 +154,8 @@ proc page_html {path index} {
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
-		<link rel=\"stylesheet\" href=\"/assets/site.css\">
-		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
+		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
+		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
 	</head>
 	<body>
 		<main>[render_markdown $path [dict create index $index]]</main>

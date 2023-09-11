@@ -87,6 +87,7 @@ proc index_html {foreword_path index} {
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $foreword_path] "Unnamed blog"]</title>
 		<link rel=\"stylesheet\" href=\"/assets/site.css\">
+		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
 	</head>
 	<body>
 		[render_markdown $foreword_path]"
@@ -111,6 +112,7 @@ proc page_html path {
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
 		<link rel=\"stylesheet\" href=\"/assets/site.css\">
+		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
 	</head>
 	<body>
 		[render_markdown $path]
@@ -198,4 +200,5 @@ foreach path [glob posts/*.md] {
 	close $f
 }
 
+# TODO: Optimize assets: add hashes, minify css, compress images, etc.
 file copy assets/ _build/

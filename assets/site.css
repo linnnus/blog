@@ -6,6 +6,7 @@ body{
 	line-height: 1.6;
 	font-size: 18px;
 	color: #444;
+	background-color: #faebd7;
 	padding: 0 10px;
 }
 
@@ -13,3 +14,6 @@ h1, h2, h3{
 	line-height: 1.2;
 	font-family: "helvetica neue", helvetica, sans-serif;
 }
+
+a { color: #ae7b37; }
+a:visited { color: inherit; }

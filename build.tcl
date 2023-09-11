@@ -121,7 +121,7 @@ proc collect_emissions {code {env {}}} {
 	interp alias $interpreter emitln {} emitln
 
 	# HACK: Give it access to useful utilities.
-	foreach p [list escape_html ??] {
+	foreach p [list escape_html ?? normalize_git_timestamp] {
 		interp alias $interpreter $p {} $p
 	}
 

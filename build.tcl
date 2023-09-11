@@ -10,6 +10,17 @@ proc ?? {value fallback} {
 	}
 }
 
+proc extract_markdown_title path {
+	set f [open $path]
+	while {[gets $f line] >= 0} {
+		if {[regexp -line {^# (.*)} $line -> title]} {
+			close $f
+			return $title
+		}
+	}
+	close $f
+}
+
 proc escape_html raw {
 	set html_entities {
 		"&" "&amp;"
@@ -22,102 +33,121 @@ proc escape_html raw {
 	return [string map $html_entities $raw]
 }
 
-# 
 proc normalize_git_timestamp ts {
 	return [regsub T.* $ts {}]
 }
 
 #
-# Post processing
+# Post rendering
 #
 
-proc extract_markdown_title path {
-	set f [open $path]
-	while {[gets $f line] >= 0} {
-		if {[regexp -line {^# (.*)} $line -> title]} {
-			close $f
-			return $title
-		}
-	}
-	close $f
-}
-
-proc expand_bang_directives path {
-	set f [open $path]
-	set command ""
-	while {[gets $f line] >= 0} {
-		if {[regexp -line {^!! (.*)} $line -> match]} {
-			append command $match\n
-		} else {
-			# We've just reached a normal line. If this line follows a command line, we
-			# should evaluate it.
-			if {[string length $command] != 0} {
-				append result [exec /bin/sh -c $command]
-				set command ""
-			}
-
-			append result $line
-			append result \n
-		}
-	}
-
-	# If the file ends on a command line...
-	if {[string length $command] != 0} {
-		append result [exec /bin/sh -c $command]
-	}
-
-	close $f
-	return $result
-}
-
 proc render_markdown {path {env {}}} {
-	set result [expand_bang_directives $path]
+	set fd [open $path r]
+	set result [read $fd]
+	close $fd
 
-	# $env contains a list of variable names in the caller's scope which
-	# can be substituted using {{var}} syntax in the post body.
-	foreach var $env {
-		set value [uplevel 1 set $var]
-		regsub -nocase -all -- "{{$var}}" $result $value result
-	}
+	set result [expand $result $env]
 
-	# Render markdown
+	# Render Markdown -> HTML.
 	set result [exec smu << $result]
 
 	return $result
+}
+
+# Turn `source' into some code which invokes the `emit' procedure to generate
+# output. It turns...
+#
+# 	This is the first line.
+# 	<? x second
+# 	emit {this is the $x line.\n} ?>
+# 	This is the third line.
+#
+# ...into...
+#
+# 	emit {This is the first line.\n}
+# 	set x second 
+# 	emit {this is the $x line.\n} 
+# 	emit {This is the third line.\n}
+#
+proc parse src {
+	while {[set i [string first <? $src]] != -1} {
+		incr i -1
+
+		# Add invocation of `emit' for text until current command.
+		append result "emit [list [string range $src 0 $i]]\n"
+		set src [string range $src [expr {$i + 3}] end]
+
+		# Find matching ?>
+		if {[set i [string first ?> $src]] == -1} {
+                        error "No matching ?>"
+                }
+		incr i -1
+
+		# Add current command.
+		append result "[string range $src 0 $i]\n"
+                set src [string range $src [expr {$i + 3}] end]
+	}
+
+	# Add trailing plaintext.
+	if {$src != {}} {
+		append result "emit [list $src]\n"
+	}
+
+	return $result
+}
+
+# Evaluates `code' and collects invocations of `emit' into the returned string.
+# It turns...
+#
+# 	emit {This is the first line.\n}
+# 	set x second
+# 	emit {this is the $x line.\n}
+# 	emit {This is the third line.\n}
+#
+# ...into...
+#
+# 	This is the first line.
+# 	this is the second line.
+# 	This is the third line.
+#
+proc collect_emissions {code {env {}}} {
+	set interpreter [interp create -safe]
+
+	# Set up `emit' and `emitln' so child interpreter can append to output.
+	set accumulator {}
+	proc emit txt { uplevel 1 [list append accumulator $txt] }
+	proc emitln txt { emit "$txt\n" }
+	interp alias $interpreter emit {} emit
+	interp alias $interpreter emitln {} emitln
+
+	# HACK: Give it access to useful utilities.
+	foreach p [list escape_html ??] {
+		interp alias $interpreter $p {} $p
+	}
+
+	# Pass a _copy_ of `env' to child interpreter. These are called "parameters".
+	dict for {key value} $env {
+		interp eval $interpreter [list set "param($key)" $value]
+	}
+
+	interp eval $interpreter $code
+
+	interp delete $interpreter
+	return $accumulator
+}
+
+# Composes `parse' and `collect_emissions'.
+proc expand {src {env {}}} {
+	set code [parse $src]
+	set txt [collect_emissions $code $env]
+	return $txt
 }
 
 #
 # File generation
 #
 
-# FIXME: There *must* be a smarter way to do this...
-proc index_html {foreword_path index} {
-	append result "<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset=\"UTF-8\">
-		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-		<title>[?? [extract_markdown_title $foreword_path] "Unnamed blog"]</title>
-		<link rel=\"stylesheet\" href=\"/assets/site.css\">
-		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
-	</head>
-	<body>"
-
-	append recent_posts_html {<ul>}
-	foreach post [lrange $index 0 3] {
-		lassign $post path title id created updated
-		set link [string map {.md .html} $path]
-		append recent_posts_html "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>\n"
-	}
-	append recent_posts_html {</ul>}
-
- 	append result "<main>[render_markdown $foreword_path [list recent_posts_html]]</main>"
-
-	append result </body></html>
-	return $result
-}
-
-proc page_html path {
+proc page_html {path index} {
 	return "<!DOCTYPE html>
 <html>
 	<head>
@@ -128,7 +158,7 @@ proc page_html path {
 		<link rel=\"stylesheet\" href=\"/assets/normalize.css\">
 	</head>
 	<body>
-		<main>[render_markdown $path]</main>
+		<main>[render_markdown $path [dict create index $index]]</main>
 	</body>
 </html>"
 }
@@ -198,18 +228,14 @@ puts [open _build/atom.xml w] [atom_xml $index]
 foreach path [glob pages/*.md] {
 	set out_path [string map {.md .html pages/ _build/} $path]
 	set f [open $out_path w]
-	if {$path eq "pages/index.md"} {
-		puts $f [index_html $path $index]
-	} else {
-		puts $f [page_html $path]
-	}
+	puts $f [page_html $path $index]
 	close $f
 }
 
 foreach path [glob posts/*.md] {
 	set out_path [string map {.md .html posts/ _build/posts/} $path]
 	set f [open $out_path w]
-	puts $f [page_html $path]
+	puts $f [page_html $path $index]
 	close $f
 }
 

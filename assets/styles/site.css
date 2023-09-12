@@ -5,8 +5,8 @@ body{
 	margin-inline: auto;
 	line-height: 1.6;
 	font-size: 18px;
-	color: #444;
-	background-color: #faebd7;
+	color: #A8F8EC;
+	background-color: #14574D;
 	padding: 0 10px;
 }
 
@@ -20,5 +20,5 @@ footer {
 	font-size: small;
 }
 
-a { color: #ae7b37; }
+a { color: white; }
 a:visited { color: inherit; }

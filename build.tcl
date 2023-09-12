@@ -113,7 +113,7 @@ proc parse src {
 # 	This is the third line.
 #
 proc collect_emissions {code {env {}}} {
-	set interpreter [interp create -safe]
+	set interpreter [interp create]
 
 	# Set up `emit' and `emitln' so child interpreter can append to output.
 	# FIXME: Avoid using a global variable, whilst still allowing emit to

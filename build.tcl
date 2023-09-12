@@ -114,9 +114,15 @@ proc collect_emissions {code {env {}}} {
 	set interpreter [interp create -safe]
 
 	# Set up `emit' and `emitln' so child interpreter can append to output.
-	set accumulator {}
-	proc emit   txt { uplevel 1 [list append accumulator $txt]   }
-	proc emitln txt { uplevel 1 [list append accumulator $txt\n] }
+	# FIXME: Avoid using a global variable, whilst still allowing emit to
+	#        be called from deep call stacks.
+	global collect_emissions_result
+	set collect_emissions_result {}
+	proc emit txt {
+		global collect_emissions_result
+		append collect_emissions_result $txt
+	}
+	proc emitln txt { emit $txt\n }
 	interp alias $interpreter emit {} emit
 	interp alias $interpreter emitln {} emitln
 
@@ -133,7 +139,7 @@ proc collect_emissions {code {env {}}} {
 	interp eval $interpreter $code
 
 	interp delete $interpreter
-	return $accumulator
+	return $collect_emissions_result
 }
 
 # Composes `parse' and `collect_emissions'.

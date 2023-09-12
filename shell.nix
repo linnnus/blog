@@ -5,7 +5,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     # Used by build script
     tcl-8_5
-    smu
+    tcllib
     git
     coreutils-full
     # Used by Makefile to supplement build script

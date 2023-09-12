@@ -1,3 +1,6 @@
+package require Tcl 8.5
+package require Markdown 1.2
+
 #
 # Utilities
 #
@@ -48,8 +51,7 @@ proc render_markdown {path {env {}}} {
 
 	set result [expand $result $env]
 
-	# Render Markdown -> HTML.
-	set result [exec smu << $result]
+	set result [::Markdown::convert $result]
 
 	return $result
 }

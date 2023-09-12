@@ -1,5 +1,5 @@
 package require Tcl 8.5
-package require Markdown 1.2
+package require cmark 1.0
 
 #
 # Utilities
@@ -51,7 +51,7 @@ proc render_markdown {path {env {}}} {
 
 	set result [expand $result $env]
 
-	set result [::Markdown::convert $result]
+	set result [::cmark::render -unsafe -strikethrough $result]
 
 	return $result
 }

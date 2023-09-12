@@ -5,7 +5,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     # Used by build script
     tcl-8_5
-    tcllib
+    tcl-cmark # From github.com/linnnus/nix-monorepo/pkgs/tcl-cmark
     git
     coreutils-full
     # Used by Makefile to supplement build script

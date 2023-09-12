@@ -2,7 +2,7 @@
 
 body{
 	max-width: 60ch;
-	margin-inline: auto;
+	margin: 2rem auto;
 	line-height: 1.6;
 	font-size: 18px;
 	color: #A8F8EC;
@@ -22,3 +22,14 @@ footer {
 
 a { color: white; }
 a:visited { color: inherit; }
+
+details {
+	padding: 1rem;
+	border-radius: 7px;
+	background-color: #114941;
+}
+details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
+details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
+details[open]   summary::marker { content: "👇\0000a0\0000a0"; }
+
+pre { overflow-x: auto; }

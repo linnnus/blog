@@ -18,6 +18,7 @@ h1, h2, h3{
 footer {
 	text-align: center;
 	font-size: small;
+	margin-block: 2rem;
 }
 
 a { color: white; }
@@ -50,3 +51,7 @@ img {
 		margin-inline: auto;
 	}
 }
+
+/* separate sections */
+section.footnotes { border-top: 2px solid; }
+main { border-bottom: 2px solid; }

@@ -23,13 +23,17 @@ footer {
 a { color: white; }
 a:visited { color: inherit; }
 
-details {
+details, pre {
 	padding: 1rem;
 	border-radius: 7px;
 	background-color: #114941;
 }
+details > pre { padding: 0; } /* HACK: avoid double padding */
 details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
 details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
 details[open]   summary::marker { content: "👇\0000a0\0000a0"; }
 
-pre { overflow-x: auto; }
+pre {
+	overflow-x: auto;
+	font-size: smaller;
+}

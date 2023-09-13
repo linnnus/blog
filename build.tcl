@@ -51,7 +51,7 @@ proc render_markdown {path {env {}}} {
 
 	set result [expand $result $env]
 
-	set result [::cmark::render -unsafe -strikethrough $result]
+	set result [::cmark::render -footnotes -unsafe -strikethrough $result]
 
 	return $result
 }

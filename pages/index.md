@@ -2,7 +2,7 @@
 
 welcome to my personal website. this is the dumping ground for all my useless
 ideas that are too long for shitposts. it's been awhile since I last wrote
-longform stuff just for fun, so we'll see how it goes. Anyways here are my
+longform stuff just for fun, so we'll see how it goes. anyways here are my
 <? emit [set n 3] ?> most recent posts:
 
 <?
@@ -18,5 +18,5 @@ longform stuff just for fun, so we'll see how it goes. Anyways here are my
 
 you can see all of them over at [The Archive&trade;](/archive.html).
 
-this site is built with [`build.tcl`&trade;](https://github.com/linnnus/linus.onl).
+this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.

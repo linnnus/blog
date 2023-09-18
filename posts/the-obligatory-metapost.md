@@ -19,7 +19,7 @@ off instantly. Not exactly Production Quality 99.99% Uptime...
 ![Picture of the man behind the camera giving a computer on a desk the middle finger](/assets/images/ahmed.jpg)
 
 It would probably have been cheaper and easier to just rent one of those
-near-free VPS somewhere but setting up this laptop was a pretty fun learning
+near-free VPSs somewhere but setting up this laptop was a pretty fun learning
 experience. Until then, I had never tried replacing the operating system on a
 computer. It was honestly pretty refreshing feeling like I was the master of
 the computer and not the other way around for a change.
@@ -34,7 +34,7 @@ An old laptop running as a server isn't *that* unusual. Much more unusual is
 the choice of operating system. Rather than opting for something like Ubuntu or
 Arch, I went with NixOS.
 
-Both my shitty ""server"" and my Macbook Pro have their configurations stored
+Both my ""server"" and my Macbook Pro have their configurations stored
 in a single monorepo. That approach definitely has its pros and cons: it's nice
 being able to share overlays and packages between the two configurations but
 trying to reconcile NixOS and nix-darwin has proven to be quite a hassle. I
@@ -151,7 +151,7 @@ inline TCL:
     emit $contents
 ?>```
 
-And *that code sample was generated inline too*!! The code above is
+And *that code sample was generated inline too!!* The code above is
 guaranteed to always be 100% accurate, because it just reads the post source
 straight from the file system. How cool is that!?
 

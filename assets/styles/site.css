@@ -39,6 +39,8 @@ pre {
 	font-size: smaller;
 }
 
+code { font-family: Courier, monospace; }
+
 img {
 	box-shadow: 4px 2px 8px 2px rgb(0 0 0 / 9%);
 	border-radius: 7px;

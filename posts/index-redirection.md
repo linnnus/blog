@@ -1,4 +1,4 @@
-# Don't redirect me to your index
+# Link rot and the innevitable heat death of the internet
 
 ## Introduction
 

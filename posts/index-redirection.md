@@ -137,7 +137,7 @@ It's all very smart, but I doubt we can convince everyone to switch protocols ju
 
 The <abbr title="too long; didn't read">tl;dr</abbr> is this:
 There's an issue on the web where links tend to 'go bad'.
-That is, their location change and hyperlinks to the old location is broken.
+That is, the location of the underlying resources change and hyperlinks pointing to the old location are broken.
 This problem is especially prevalent in the IndieWeb community
 because we don't have teams of engineers managing our sites and checking for backwards compatibility.
 

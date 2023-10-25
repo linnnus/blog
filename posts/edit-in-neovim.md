@@ -121,6 +121,10 @@ Do beware that the original `writeFile` linked before doesn't handle Unicode tex
 
 [Mac Automation Scripting Guide]: https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ReadandWriteFiles.html
 
+The code for restoring the focused application was taken from a [patch on the `pass` mail archives].
+
+[patch on the `pass` mail archives]: https://lists.zx2c4.com/pipermail/password-store/2015-July/001628.html
+
 ## Neovim as a standalone application.
 
 This next snippet wraps NeoVim in a proper Application&trade;.

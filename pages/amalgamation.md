@@ -1,6 +1,6 @@
 # Amalgamation
 
-This page contains all posts amalgamated into a single page, [SQL style][sql-amalgamation].
+This page contains all posts amalgamated into a single page [SQL-style][sql-amalgamation].
 You can use this if you want to [doomscroll] all my posts, I guess.
 For me, it was a nice way to learn about [how to use to improve load times using `content-visibility`][content-visibility].
 
@@ -16,3 +16,5 @@ For me, it was a nice way to learn about [how to use to improve load times using
 		emitln {</article>}
 	}
 ?>
+
+That's it! There are no more posts...

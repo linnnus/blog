@@ -115,18 +115,20 @@ proc parse src {
 proc collect_emissions {code {env {}}} {
 	set interpreter [interp create]
 
-	# Set up `emit' and `emitln' so child interpreter can append to output.
-	# FIXME: Avoid using a global variable, whilst still allowing emit to
-	#        be called from deep call stacks.
-	global collect_emissions_result
-	set collect_emissions_result {}
-	proc emit txt {
+	# Set up `emit' and `emitln' so child interpreter can append to output
+	# variable. The output variable is extracted from the interpreter after
+	# the script has finished.
+	interp eval $interpreter {
 		global collect_emissions_result
-		append collect_emissions_result $txt
+		set collect_emissions_result {}
+
+		proc emit txt {
+			global collect_emissions_result
+			append collect_emissions_result $txt
+		}
+
+		proc emitln txt { emit $txt\n }
 	}
-	proc emitln txt { emit $txt\n }
-	interp alias $interpreter emit {} emit
-	interp alias $interpreter emitln {} emitln
 
 	# HACK: Give it access to useful utilities.
 	foreach p [list escape_html ?? normalize_git_timestamp] {
@@ -140,8 +142,10 @@ proc collect_emissions {code {env {}}} {
 
 	interp eval $interpreter $code
 
+	set result [interp eval $interpreter set collect_emissions_result]
+
 	interp delete $interpreter
-	return $collect_emissions_result
+	return $result
 }
 
 # Composes `parse' and `collect_emissions'.

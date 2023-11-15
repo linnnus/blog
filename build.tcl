@@ -160,6 +160,13 @@ proc expand {src {env {}}} {
 #
 
 proc page_html {path index} {
+	set css_path assets/styles/[string map {pages/ "" .md ""} $path].css
+	if {[file exists $css_path]} {
+		set custom_css "<link rel=\"stylesheet\" href=\"/$css_path\">"
+	} else {
+		set custom_css ""
+	}
+
 	return "<!DOCTYPE html>
 <html>
 	<head>
@@ -168,6 +175,7 @@ proc page_html {path index} {
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
 		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
 		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
+		$custom_css
 	</head>
 	<body>
 		<main>[render_markdown $path [dict create index $index]]</main>

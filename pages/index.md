@@ -16,7 +16,8 @@ longform stuff just for fun, so we'll see how it goes. anyways here are my
     emitln </ul>
 ?>
 
-you can see all of them over at [The Archive&trade;](/archive.html).
+you can see the full list of them over at [The Archive&trade;](/archive.html)
+or read them all in a huge blob over at [the amalgamation](/amalgamation.html).
 
 this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.

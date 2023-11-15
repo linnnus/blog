@@ -131,7 +131,7 @@ proc collect_emissions {code {env {}}} {
 	}
 
 	# HACK: Give it access to useful utilities.
-	foreach p [list escape_html ?? normalize_git_timestamp] {
+	foreach p [list escape_html ?? normalize_git_timestamp render_markdown] {
 		interp alias $interpreter $p {} $p
 	}
 

@@ -1,0 +1,21 @@
+/* Styles for the amalgamation page */
+
+article.post {
+	/* See: https://youtu.be/FFA-v-CIxJQ?t=449 */
+	content-visibility: auto;
+	contain-intrinsic-size: 1px 5000px;
+
+	border: 2px solid #A8F8EC; /* match site.css */
+	border-radius: 7px; /* match site.css */
+
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+article.post > *:first-child {
+	margin-top: 0;
+}
+
+article.post > *:last-child {
+	margin-bottom: 0;
+}

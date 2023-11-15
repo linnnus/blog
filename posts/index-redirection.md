@@ -15,7 +15,7 @@ that the original work seems almost prophetic.
 
 [The Website Obesity Crisis]: https://idlewords.com/talks/website_obesity.htm
 [a watch]: https://webdirections.org/blog/the-website-obesity-crisis
-[^html-kiddies]: For lack of a better term I'm just going to reuse [script kiddies](https://en.wikipedia.org/wiki/Script_kiddie).
+[^html-kiddies]: For lack of a better terminology I'm just going to reuse that of [script kiddies](https://en.wikipedia.org/wiki/Script_kiddie).
 
 Anyway, in one of the slides he talks about an experiment by some Adam Drake guy.
 
@@ -90,7 +90,7 @@ His link to `aadrake.com` was quietly broken
 and with that another edge in the huge directed graph
 that is the open web.
 
-## What can I do?
+## What can I do about it?
 
 Okay so link rot is bad.
 How can I avoid further contributing to link entropy?
@@ -102,10 +102,11 @@ Think of it more like a kind of public diary of my feeble attempts to fight my o
 
 I have tried to be very careful about the layout of the site, URI-wise.
 For example, all posts are located at `/posts/<glob>.html` and I never change the glob.
-I also try to avoid leaking extensions.
+I also try to avoid leaking implementatin details in the URL.
 This is rather easy since this is a static site,
 but in the future I might add dynamic elements.
-In that case I'll try not to introduce extensions like `.cgi` or `.php`.
+In that case I'll try not to introduce extensions like `.cgi` or `.php`
+that couple the URL to the underlying tech stack.
 
 Still, I fear it might not be enough.
 After all, perfection is the enemy of progress.

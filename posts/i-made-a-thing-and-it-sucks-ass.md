@@ -7,9 +7,9 @@ link goes when I see text like "You can read more about that
 
 ![A screenshot of a blog post. The mouse hovers a link. A popup above the link shows the title and description of the page](/assets/images/hover-screenshot.png)
 
-Anyways, the thing is, it didn't take me very long to make this. An hour or two
+The thing is, it didn't take me very long to make this. An hour or two
 including setting up the user script manager and whatnot. However, the issue
-is: I just. keep. finding. edge cases. Here's a couple of examples:
+is: *I just keep finding edge cases*. Here's a couple of examples:
 
 * Most sites don't actually implement the OpenGraph protocol so the popups are
   kind of useless unless I also implement metadata extraction myself. For now I
@@ -34,6 +34,7 @@ tree's structure. And it's still not finished! I stuck with that project,
 because I thought it was funny and some of my friends were using it, but I just
 don't have that motivation this time.
 
-The tl;dr is that I made a kind of useful utility, but to implement it fully
-would require a disproportionate amount of work. So much work that I don't
-think I'll finish the thing. And that's why I hate making stuff for the web.
+The <abbr title="too long; didn't read">tl;dr</abbr> is that I made a kind of
+useful utility, but to implement it fully would require a disproportionate
+amount of work. So much work that I don't think I'll finish the thing. And
+that's why I hate making stuff for the web.

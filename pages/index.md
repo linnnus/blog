@@ -16,7 +16,6 @@ it's been awhile since I last wrote longform stuff just for fun,
 so we'll see how it goes.
 anyways here are my <? emit [set n 3] ?> most recent posts:
 
-<!--
 <?
     emitln <ul>
 	# NOTE: Should mostly match pages/archive.md
@@ -26,7 +25,7 @@ anyways here are my <? emit [set n 3] ?> most recent posts:
 		emitln "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>"
 	}
     emitln </ul>
-?>-->
+?>
 
 you can see the full list of them over at [The Archive&trade;](/archive.html)
 or read them all as a huge blob in [the amalgamation](/amalgamation.html).

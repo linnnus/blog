@@ -49,9 +49,21 @@ proc render_markdown {path {env {}}} {
 	set result [read $fd]
 	close $fd
 
-	set result [expand $result $env]
+	# TODO: Remove comment lines here.
 
 	set result [::cmark::render -footnotes -unsafe -strikethrough $result]
+
+	# Note that we run the expansion of TCL after markdown has been
+	# expanded. The delimiters <? and ?> denote a HTML-block per the
+	# CommonMark specification and is thus left alone by any correct
+	# markown implementation.
+	#
+	# This also means that TCL blocks inside markdown code-blocks will be
+	# escaped, i.e. < and > are transformed to &lt; and &gt; which are not
+	# recognized by the parse function. This is good.
+	#
+	# See: https://spec.commonmark.org/0.30/#html-blocks
+	set result [expand $result $env]
 
 	return $result
 }

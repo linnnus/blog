@@ -29,7 +29,7 @@ details, pre {
 	border-radius: 7px;
 	background-color: #114941;
 }
-details > pre { padding: 0; } /* HACK: avoid double padding */
+details > pre { padding: 0; margin-bottom: 0; } /* HACK: avoid double spacing */
 details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
 details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
 details[open]   summary::marker { content: "👇\0000a0\0000a0"; }

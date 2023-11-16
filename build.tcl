@@ -49,7 +49,9 @@ proc render_markdown {path {env {}}} {
 	set result [read $fd]
 	close $fd
 
-	# TODO: Remove comment lines here.
+	# Remove comment lines. These are replaced with an empty line and as
+	# such can be used to split block-level elements like paragraphs.
+	regsub -line -all {^; .*$} $result {} result
 
 	set result [::cmark::render -footnotes -unsafe -strikethrough $result]
 

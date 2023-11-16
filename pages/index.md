@@ -1,10 +1,22 @@
 # linus' webbed site
 
-welcome to my personal website. this is the dumping ground for all my useless
-ideas that are too long for shitposts. it's been awhile since I last wrote
-longform stuff just for fun, so we'll see how it goes. anyways here are my
-<? emit [set n 3] ?> most recent posts:
+hi there!
+welcome to my personal website.
+that's me, the idiot on the bike with the red shoes.
+this is the dumping ground for all my useless ideas
+that are too long for shitposts
 
+; TODO: Use source-set to cut image for mobile devices
+; https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+![Two idiots on a tandem bike](/assets/images/bike.webp)
+
+## fart
+
+it's been awhile since I last wrote longform stuff just for fun,
+so we'll see how it goes.
+anyways here are my <? emit [set n 3] ?> most recent posts:
+
+<!--
 <?
     emitln <ul>
 	# NOTE: Should mostly match pages/archive.md
@@ -14,10 +26,42 @@ longform stuff just for fun, so we'll see how it goes. anyways here are my
 		emitln "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>"
 	}
     emitln </ul>
-?>
+?>-->
 
 you can see the full list of them over at [The Archive&trade;](/archive.html)
-or read them all in a huge blob over at [the amalgamation](/amalgamation.html).
+or read them all as a huge blob in [the amalgamation](/amalgamation.html).
+
+## stuff i made
+
+most of the stuff i make is [situated software] so it doesn't really make sense to show off here
+
+[situated software]: https://gwern.net/doc/technology/2004-03-30-shirky-situatedsoftware.html
+
+one thing i *can* show is the [push notification api][pna].
+it provides a minimal http interface for dispatching notifications to ones mobile device.
+i use it to notify myself of failed cron jobs etc. on my server
+
+[pna]: http://notifications.linus.onl/
+
+i also co-authored the [BuffCurrency] browser extension.
+it automatically convertes prices fron yuan to the users preferred currency on [buff].
+i find the recursive solution pragmatically elegant
+in the same way as many other effective solutions on the web.
+
+[BuffCurrency]: https://github.com/realwakils/buffcurrency
+[buff]: https://buff.163.com/
+
+lastly there's the [uwuifier extension][uwu]: a silly joke
+which ended up requiring an unfair amount of research into
+how the dom is structured and how e.g. React work under the hood.
+
+[uwu]: https://github.com/linnnus/uwu
+
+## i drive
 
 this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.
+
+you can also find me on [@linuwus on cohost][cohost].
+
+[cohost]: https://cohost.org/linuwus

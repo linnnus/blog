@@ -174,9 +174,9 @@ proc expand {src {env {}}} {
 #
 
 proc page_html {path index} {
-	set css_path /styles/[string map {src/ "" .md ""} $path].css
-	if {[file exists src/$css_path]} {
-		set custom_css "<link rel=\"stylesheet\" href=\"$css_path\">"
+	set css_path assets/styles/[string map {pages/ "" .md ""} $path].css
+	if {[file exists $css_path]} {
+		set custom_css "<link rel=\"stylesheet\" href=\"/$css_path\">"
 	} else {
 		set custom_css ""
 	}
@@ -187,8 +187,8 @@ proc page_html {path index} {
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
-		<link rel=\"stylesheet\" href=\"/styles/site.css\">
-		<link rel=\"stylesheet\" href=\"/styles/normalize.css\">
+		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
+		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
 		$custom_css
 	</head>
 	<body>
@@ -211,7 +211,7 @@ proc atom_xml index {
 
 	append result "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <feed xmlns=\"http://www.w3.org/2005/Atom\">
-	<title>[extract_markdown_title src/index.md]</title>
+	<title>[extract_markdown_title pages/index.md]</title>
 	<link href=\"$url\" rel=\"self\" />
 	<updated>[exec date --iso=seconds]</updated>
 	<author>
@@ -260,24 +260,23 @@ proc make_index directory {
 file delete -force _build
 file mkdir _build/posts
 
-set index [make_index src/posts]
+set index [make_index posts]
 
 puts [open _build/atom.xml w] [atom_xml $index]
 
-foreach path [glob src/*.md] {
-	set out_path [string map {.md .html src/ _build/} $path]
+foreach path [glob pages/*.md] {
+	set out_path [string map {.md .html pages/ _build/} $path]
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f
 }
 
-foreach path [glob src/posts/*.md] {
-	set out_path [string map {.md .html src/ _build/} $path]
+foreach path [glob posts/*.md] {
+	set out_path [string map {.md .html posts/ _build/posts/} $path]
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f
 }
 
 # TODO: Optimize assets: add hashes, minify css, compress images, etc.
-file copy src/images/ _build/
-file copy src/styles/ _build/
+file copy assets/ _build/

@@ -16,7 +16,7 @@ My site is currently running on a shitty laptop sitting in my basement. The
 power cable is broken so if anyone even slightly nudges it, the computer shuts
 off instantly. Not exactly Production Quality 99.99% Uptime...
 
-![Picture of the man behind the camera giving a computer on a desk the middle finger](/images/ahmed.jpg)
+![Picture of the man behind the camera giving a computer on a desk the middle finger](/assets/images/ahmed.jpg)
 
 It would probably have been cheaper and easier to just rent one of those
 near-free VPSs somewhere but setting up this laptop was a pretty fun learning
@@ -150,7 +150,7 @@ inline TCL:
 ; Since we actually want to evaluate the <??>-block we have to emulate the HTML
 ; output of a markdown code-block.
 <pre><code class="language-markdown"><?
-    set fd [open src/archive.md]
+    set fd [open pages/archive.md]
     set contents [read $fd]
     emit [escape_html $contents]
 ?></code></pre>

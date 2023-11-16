@@ -8,7 +8,7 @@ that are too long for shitposts
 
 ; TODO: Use source-set to cut image for mobile devices
 ; https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
-![Two idiots on a tandem bike](/images/bike.webp)
+![Two idiots on a tandem bike](/assets/images/bike.webp)
 
 ## fart
 
@@ -44,7 +44,7 @@ i use it to notify myself of failed cron jobs etc. on my server
 [pna]: http://notifications.linus.onl/
 
 i also co-authored the [BuffCurrency] browser extension.
-it automatically converts prices fron yuan to the users preferred currency on [buff].
+it automatically convertes prices fron yuan to the users preferred currency on [buff].
 i find the recursive solution pragmatically elegant
 in the same way as many other effective solutions on the web.
 

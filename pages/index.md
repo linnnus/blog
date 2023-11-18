@@ -61,6 +61,15 @@ how the dom is structured and how e.g. React work under the hood.
 this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.
 
+if you find an issue with the site feel free to [create an issue][issue].
+it could be anything:
+an issue with HTML accessibility,
+a bad wording,
+a factual mistake,
+etc.
+
+[issue]: https://github.com/linnnus/linus.onl/issues/new
+
 you can also find me on [@linuwus on cohost][cohost].
 
 [cohost]: https://cohost.org/linuwus

@@ -159,6 +159,7 @@ proc collect_emissions {code {env {}}} {
 	dict for {key value} $env {
 		interp eval $interpreter [list set "param($key)" $value]
 	}
+	interp eval $interpreter [list set param(__raw_env) $env]
 
 	interp eval $interpreter $code
 

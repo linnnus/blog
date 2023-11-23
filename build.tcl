@@ -44,10 +44,16 @@ proc normalize_git_timestamp ts {
 # Post rendering
 #
 
-proc render_markdown {path {env {}}} {
+proc render_markdown_file {path {env {}}} {
 	set fd [open $path r]
-	set result [read $fd]
+	set markdown_source [read $fd]
 	close $fd
+
+	return [render_markdown $markdown_source $env]
+}
+
+proc render_markdown {markdown_source {env {}}} {
+	set result $markdown_source
 
 	# Remove comment lines. These are replaced with an empty line and as
 	# such can be used to split block-level elements like paragraphs.
@@ -145,7 +151,7 @@ proc collect_emissions {code {env {}}} {
 	}
 
 	# HACK: Give it access to useful utilities.
-	foreach p [list escape_html ?? normalize_git_timestamp render_markdown] {
+	foreach p [list escape_html ?? normalize_git_timestamp render_markdown_file] {
 		interp alias $interpreter $p {} $p
 	}
 
@@ -192,7 +198,7 @@ proc page_html {path index} {
 		$custom_css
 	</head>
 	<body>
-		<main>[render_markdown $path [dict create index $index]]</main>
+		<main>[render_markdown_file $path [dict create index $index]]</main>
 		<footer>
 			<a href=\"/\">Go to index</a> |
 			Source available on <a href=\"https://github.com/linnnus/linus.onl\">Github</a> |
@@ -223,7 +229,7 @@ proc atom_xml index {
 		lassign $post path title id created updated
 		if {$created eq "draft"} continue
 
-		set content [escape_html [render_markdown $path]]
+		set content [escape_html [render_markdown_file $path]]
 		set link $proto://$host/[string map {.md .html} $path]
 		append result "
 	<entry>

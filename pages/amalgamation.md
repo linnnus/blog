@@ -12,7 +12,7 @@ For me, it was a nice way to learn about [how to improve load times using `conte
 	foreach post $param(index) {
 		lassign $post path title id created updated
 		emitln {<article class="post">}
-		emitln [render_markdown $path [dict create index $param(index)]]
+		emitln [render_markdown_file $path [dict create index $param(index)]]
 		emitln {</article>}
 	}
 ?>

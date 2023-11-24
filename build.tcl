@@ -59,7 +59,7 @@ proc render_markdown {markdown_source {env {}}} {
 	# such can be used to split block-level elements like paragraphs.
 	regsub -line -all {^; .*$} $result {} result
 
-	set result [::cmark::render -footnotes -unsafe -strikethrough $result]
+	set result [::cmark::render -footnotes -smart -unsafe -strikethrough $result]
 
 	# Note that we run the expansion of TCL after markdown has been
 	# expanded. The delimiters <? and ?> denote a HTML-block per the
@@ -138,6 +138,7 @@ proc collect_emissions {code {env {}}} {
 	# Set up `emit' and `emitln' so child interpreter can append to output
 	# variable. The output variable is extracted from the interpreter after
 	# the script has finished.
+	# TODO: Better naming that indicates what is safe vs. unsafe.
 	interp eval $interpreter {
 		global collect_emissions_result
 		set collect_emissions_result {}
@@ -161,8 +162,10 @@ proc collect_emissions {code {env {}}} {
 	}
 	interp eval $interpreter [list set param(__raw_env) $env]
 
+	# Evaluate code which calls emit.
 	interp eval $interpreter $code
 
+	# Extract the final HTML.
 	set result [interp eval $interpreter set collect_emissions_result]
 
 	interp delete $interpreter

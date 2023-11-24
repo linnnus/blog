@@ -32,6 +32,9 @@ or read them all as a huge blob in [the amalgamation](/amalgamation.html).
 
 ## stuff i made
 
+; TODO: These aren't really representative of what I like to do and how cool i am.
+;       I sound like some kind of web silly project guy??
+
 most of the stuff i make is [situated software] so it doesn't really make sense to show off here
 
 [situated software]: https://gwern.net/doc/technology/2004-03-30-shirky-situatedsoftware.html

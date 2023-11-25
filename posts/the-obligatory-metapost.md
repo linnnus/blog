@@ -83,7 +83,8 @@ which looks like this:
 
 ; NOTE: <??>-block is not evaluated in here, as markdown preprocessor escapes
 ;       delimiters inside code-blocks.
-<pre><code class="language-markdown"># My post
+```markdown
+# My post
 
 Here's some *markdown* with __formatting__.
 
@@ -91,13 +92,15 @@ The current time is <?
     set secs [clock seconds]
     set fmt [clock format $secs -format %H:%M]
     emit $fmt
-?>.</pre></code>
+?>.
+```
 
 That markup is then turned into a TCL program, which is going to generate the
 final markdown, by the
 [`parse`](https://github.com/linnnus/linus.onl/blob/b2f54c7478593662cc268cc5d50b5f61bc9e46c5/build.tcl#L74)
 procedure.
 
+; This is just an example of a generated program so we can use the regular code block.
 ```tcl
 emit {# My post
 

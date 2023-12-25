@@ -40,7 +40,7 @@ But I worry [Cohost] might be to loosely coupled a community.
 Social media just isn't the same as the semi-public space of a chat room[^self-deprecating].
 
 [Cohost]: https://cohost.org/
-[^me]: I'm [@linuwus](https://cohost.org/linuwus). Feel free to send and ask and say hello!
+[^me]: I'm [@linuwus](https://cohost.org/linuwus). Feel free to send an ask and say hello!
 [^self-deprecating]: Or maybe people just don't want to talk to me, idk.
 
 ; I wish I could find some way to mention that it was nice having that online community while my offline community was changing.

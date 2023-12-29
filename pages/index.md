@@ -53,11 +53,16 @@ in the same way as many other effective solutions on the web.
 [BuffCurrency]: https://github.com/realwakils/buffcurrency
 [buff]: https://buff.163.com/
 
-lastly there's the [uwuifier extension][uwu]: a silly joke
+there's the [uwuifier extension][uwu]: a silly joke
 which ended up requiring an unfair amount of research into
 how the dom is structured and how e.g. React work under the hood.
 
 [uwu]: https://github.com/linnnus/uwu
+
+eh... theres... [hellohtml].
+itslike codepen except,, much worse.
+
+[hellohtml]: https://hellohtml.linus.onl/
 
 ## i drive
 

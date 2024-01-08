@@ -1,4 +1,4 @@
-# Longing for community
+# Longing for (digital) community
 
 There's this tweet that has been stuck in my head lately.
 

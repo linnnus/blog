@@ -10,7 +10,7 @@ that are too long for shitposts
 ; https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
 ![Two idiots on a tandem bike](/assets/images/bike.webp)
 
-## fart
+## i write
 
 it's been awhile since I last wrote longform stuff just for fun,
 so we'll see how it goes.
@@ -30,7 +30,7 @@ anyways here are my <? emit [set n 3] ?> most recent posts:
 you can see the full list of them over at [The Archive&trade;](/archive.html)
 or read them all as a huge blob in [the amalgamation](/amalgamation.html).
 
-## stuff i made
+## i write (the other kind)
 
 ; TODO: These aren't really representative of what I like to do and how cool i am.
 ;       I sound like some kind of web silly project guy??
@@ -64,7 +64,7 @@ itslike codepen except,, much worse.
 
 [hellohtml]: https://hellohtml.linus.onl/
 
-## i drive
+## you (can) write (to me)
 
 this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.

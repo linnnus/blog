@@ -1,15 +1,17 @@
 # Common font fallbacks
 
-This page is an HTML adaption of [@yesiamrocks] [CSS fallback fonts][css-fallback-fonts] repository.
+I quite like [@yesiamrocks]'s [CSS fallback fonts][css-fallback-fonts] repository.
 It contains a lot of common [CSS fallback chains][w3-font-fallback].
-On this page I've taken the liberty of converting the Markdown to some HTML with examples of each CSS chunk.
+My only gripe is that I can't see the fonts in use.
+Here, I've taken the liberty of converting the Markdown to some HTML with examples of each CSS chunk.
 
 Keep in mind that if you don't have the fonts installed on your system,
 you will see the first fallback that *is* installed.
 Any browser worth its salt will let you see this using its development tools.
-For example, [here's how to do it in FireFox][ff-fonts-used].
+For example, [here's how to do it in Firefox][ff-fonts-used].
 
-Regretfully, it is not possible to highlight failing fonts, as doing so would allow for easy fingerprinting.
+Regrettably, it is not possible to highlight failing fonts,
+as doing so would allow for easy fingerprinting.
 This exact issue has been discussed by the [CSS Working Group][font-check].
 
 This document is split into 3 sections:

@@ -2,7 +2,7 @@
 
 hi there!
 welcome to my personal website.
-that's me, the idiot on the bike with the red shoes.
+that's me, the idiot with the red shoes.
 this is the dumping ground for all my useless ideas
 that are too long for shitposts
 

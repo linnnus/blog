@@ -20,12 +20,37 @@ anyways here are my <? emit [set n 3] ?> most recent posts:
 
 <?
     emitln <ul>
+
 	# NOTE: Should mostly match pages/archive.md
-	foreach post [lrange $param(index) 0 [expr $n - 1]] {
+    foreach post [lrange $param(index) 0 [expr $n - 1]] {
 		lassign $post path title id created updated
-		set link [string map {.md .html} $path]
-		emitln "<li><a href=\"[escape_html $link]\">[escape_html $title]</a></li>"
-	}
+        set link [string map {.md .html} $path]
+        emitln <li>
+        emitln "<a href=\"[escape_html $link]\">[escape_html $title]</a>"
+        emitln </li>
+    }
+
+    emitln </ul>
+?>
+
+and here are some posts i'm particularly proud of:
+
+<?
+    set favs [list longing-for-community index-redirection]
+
+    emitln <ul>
+
+    foreach post $param(index) {
+		lassign $post path title id created updated
+
+        if {[lsearch -exact $favs $id] >= 0} {
+            set link [string map {.md .html} $path]
+            emitln <li>
+            emitln "<a href=\"[escape_html $link]\">[escape_html $title]</a>"
+            emitln </li>
+        }
+    }
+
     emitln </ul>
 ?>
 

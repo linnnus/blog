@@ -13,7 +13,9 @@ that are too long for shitposts
 ## i write
 
 it's been awhile since I last wrote longform stuff just for fun,
-so we'll see how it goes.
+and the results are,,, pretty cringe if i'm being honest.
+even then, i guess that's the [first step towards not sucking at it][jake]
+
 anyways here are my <? emit [set n 3] ?> most recent posts:
 
 <?
@@ -29,6 +31,8 @@ anyways here are my <? emit [set n 3] ?> most recent posts:
 
 you can see the full list of them over at [The Archive&trade;](/archive.html)
 or read them all as a huge blob in [the amalgamation](/amalgamation.html).
+
+[jake]: /assets/images/jake-sucking-at-something.gif
 
 ## i write (the other kind)
 

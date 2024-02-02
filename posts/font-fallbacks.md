@@ -63,7 +63,7 @@ proc emit_fonts {fonts} {
 [ff-fonts-used]: https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_fonts/index.html#fonts-used
 [font-check]: https://github.com/w3c/csswg-drafts/issues/5744
 
-## Sans-serif fonts <a id="sans-serif" />
+## Sans-serif fonts <a id="sans-serif"></a>
 
 <?
 set sans_serif_fonts {
@@ -92,7 +92,7 @@ set sans_serif_fonts {
 emit_fonts $sans_serif_fonts
 ?>
 
-## Serif fonts <a name="serif" />
+## Serif fonts <a name="serif" /></a>
 
 <?
 set serif_fonts {
@@ -118,7 +118,7 @@ set serif_fonts {
 emit_fonts $serif_fonts
 ?>
 
-## Monospace fonts <a id="monospace" />
+## Monospace fonts <a id="monospace"></a>
 
 <?
 emit_fonts {

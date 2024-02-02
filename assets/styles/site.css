@@ -1,13 +1,16 @@
 /* Site-wide styles. */
 
 body{
-	max-width: 70ch;
+	max-width: 60ch;
 	margin: 2rem auto;
+	padding: 0 10px;
+
 	line-height: 1.6;
 	font-size: 18px;
+	font-family: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
+
 	color: #A8F8EC;
 	background-color: #14574D;
-	padding: 0 10px;
 }
 
 h1, h2, h3{
@@ -36,10 +39,13 @@ details[open]   summary::marker { content: "👇\0000a0\0000a0"; }
 
 pre {
 	overflow-x: auto;
-	font-size: smaller;
+	line-height: 1;
 }
 
-code { font-family: Courier, monospace; }
+code {
+	font-family: Courier, monospace;
+	font-size: 0.875em; /* Courier appears taller than system font at 1em */
+}
 
 img {
 	box-shadow: 4px 2px 8px 2px rgb(0 0 0 / 9%);

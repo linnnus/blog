@@ -102,7 +102,8 @@ console.log("Here is your random string: " + bgMagenta(s));
 
 ; FIXME: "vendor directory" is the output of `deno vendor`, but we haven't used that term before.
 First, we'll build the vendor directory.
-We pull out the `src` attribute into a separate variable, as it is shared between both derivations.
+We pull out the `src` attribute into a separate variable,
+as it is shared between both derivations.
 The fact that we specify the `outputHash` attribute means that this is going to be a fixed-output derivation.
 As such, the builder will be allowed network access in return to guaranteeing that the output has a specific hash.
 
@@ -134,6 +135,36 @@ random-string-vendor = stdenv.mkDerivation {
 };
 ```
 
+Let's try building this and taking a peek inside.
+In the transcript below, you will see
+that the output contains a directory hierarchy corresponding to our dependencies.
+It also contains `import_map.json` at the top level.
+
+```sh
+$ nix-build vendor.nix
+/nix/store/…-random-string-vendor
+$ tree /nix/store/…-random-string-vendor
+/nix/store/…-random-string-vendor
+├── deno.land
+│   └── std@0.214.0
+│       └── fmt
+│           └── colors.ts
+├── esm.sh
+│   ├── v135
+│   │   ├── @types
+│   │   │   └── randomstring@1.1.11
+│   │   │       └── index.d.ts
+│   │   ├── randombytes@2.0.3
+│   │   │   └── denonext
+│   │   │       └── randombytes.mjs
+│   │   └── randomstring@1.3.0
+│   │       └── denonext
+│   │           └── randomstring.mjs
+│   ├── randomstring@1.3.0.js
+│   └── randomstring@1.3.0.proxied.js
+└── import_map.json
+```
+
 Now we can build the actual application.
 We are going to create a little wrapper script
 which will invoke Deno with the right arguments.
@@ -151,8 +182,9 @@ random-string = writeShellScript "random-string" ''
 '';
 ```
 
-That's basically all there is to it.
-The great thing about this approach is that it uses Deno's exact resolution algorithm.
+That's basically all there is to it!
+The great thing about this approach is
+that it (by definition) uses Deno's exact resolution algorithm.
 We don't run into trouble with `esm.sh` because Deno sets the correct UA.
 That's an entire class of bugs eliminated!
 

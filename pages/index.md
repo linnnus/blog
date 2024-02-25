@@ -95,9 +95,6 @@ itslike codepen except,, much worse.
 
 ## you (can) write (to me)
 
-this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
-last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.
-
 if you find an issue with the site feel free to [create an issue][issue].
 it could be anything:
 an issue with HTML accessibility,
@@ -107,6 +104,15 @@ etc.
 
 [issue]: https://github.com/linnnus/linus.onl/issues/new
 
-you can also find me on [@linuwus on cohost][cohost].
+i also exist in other places on the cyberweb.
 
-[cohost]: https://cohost.org/linuwus
+; See assets/styles/index.css for cyberspace styling.
+; See assets/images/stars.gif for the background image.
+<ul class="cyberspace">
+    <li class="cyberspace__item" style="top: 20%; left: 10%;"><a class="cyberspace__item__link" href="https://cohost.org/linuwus/">Cohost.org</a></li>
+    <li class="cyberspace__item" style="top: 44%; left: 70%;"><a class="cyberspace__item__link" href="https://github.com/linnnus/">GitHub</a></li>
+    <li class="cyberspace__item" style="top: 73%; left: 26%;"><a class="cyberspace__item__link" href="https://discord.gg/ADtHMjKdfB">the conlgang circle jerkle</a></li>
+</ul>
+
+this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
+last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.

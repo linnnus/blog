@@ -1,0 +1,26 @@
+.cyberspace {
+	/* Remove list styling */
+	list-style: none;
+	padding: 0;
+
+	/* Display as star box */
+	display: block;
+	height: 300px;
+	background-color: black;
+	background-image: url(../images/stars.gif);
+
+	/* Same shadow as images */
+	box-shadow: 4px 2px 8px 2px rgb(0 0 0 / 9%);
+	border-radius: 7px;
+
+	/* Must be positioned so items can be positioned relative to their container */
+	position: relative;
+}
+
+.cyberspace__item {
+	/* Per-element styles set 'left' and 'right'. */
+	position: absolute;
+}
+
+.cyberspace__item__link { color: #4949f4; }
+.cyberspace__item__link:visited { color: magenta; }

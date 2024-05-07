@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			html, body {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			#right { background-color: red; }
+			#left { background-color: blue; }
+
+			#right, #left {
+			    width: 100vw;
+			    height: 50vh;
+			    display: flex;
+			    justify-content: center;
+			    align-content: center;
+			    flex-wrap: wrap;
+			    font-size: xxx-large;
+			    color: white;
+			    user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="right">0</div>
+		<div id="left">0</div>
+		<script>
+			function wad(id) {
+				const elt = document.getElementById(id);
+				elt.addEventListener("click", () => {
+					elt.textContent = +elt.textContent + 1;
+				});
+			}
+
+			wad("right");
+			wad("left");
+		</script>
+	</body>
+</html>

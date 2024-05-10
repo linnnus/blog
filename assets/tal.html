@@ -48,6 +48,9 @@
 				transform: translateX(-50%);
 
 				color: white;
+
+				/* Tapping status will activate lower counter */
+				pointer-events: none;
 			}
 		</style>
 		<script type="module">
@@ -76,7 +79,7 @@
 				statusElem.textContent = "Screen Wake Lock API supported 🎉";
 			} else {
 				isSupported = false;
-				statusElem.textContent = "Wake lock is not supported by this browser.";
+				statusElem.textContent = "Wake lock not supported";
 			}
 
 			if (isSupported) {

@@ -199,6 +199,7 @@ proc page_html {path index} {
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
 		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
 		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
+		<script type=\"module\" src=\"/assets/scripts/favicon-anchors.js\"></script>
 		$custom_css
 	</head>
 	<body>

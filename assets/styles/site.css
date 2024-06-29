@@ -63,3 +63,10 @@ img {
 /* separate sections */
 section.footnotes { border-top: 2px solid; }
 main { border-bottom: 2px solid; }
+
+.favicon {
+	height: .7em;
+	width: auto;
+	padding-left: .5ch;
+	display: initial; /* reset other iamge styling */
+}

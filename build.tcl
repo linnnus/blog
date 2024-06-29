@@ -92,6 +92,7 @@ proc render_markdown {markdown_source {env {}}} {
 # 	emit {This is the third line.\n}
 #
 proc parse src {
+	set result {}
 	while {[set i [string first <? $src]] != -1} {
 		incr i -1
 

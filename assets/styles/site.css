@@ -67,6 +67,7 @@ main { border-bottom: 2px solid; }
 .favicon {
 	height: .7em;
 	width: auto;
-	padding-left: .5ch;
-	display: initial; /* reset other iamge styling */
+	margin-inline-start: .5ch;
+	display: inline-block;
+	border: 1px solid;
 }

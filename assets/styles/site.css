@@ -45,6 +45,10 @@ pre {
 code {
 	font-family: Courier, monospace;
 	font-size: 0.875em; /* Courier appears taller than system font at 1em */
+
+	/* This will not have an effect on code inside pre's but will affect inline code elements.
+	 * Without this lines with long inline code are broken weirdly */
+	word-break: break-all;
 }
 
 img {

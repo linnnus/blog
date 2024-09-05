@@ -179,7 +179,7 @@ that Minecraft was now showing up under the microphone permission in settings.
 
 [svc]: https://modrinth.com/plugin/simple-voice-chat
 [svc-wiki]: https://modrepo.de/minecraft/voicechat/wiki/macos
-[tcc-deepdive]: https://modrinth.com/plugin/simple-voice-chat
+[tcc-deepdive]: https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive
 [Prism]: https://prismlauncher.org/
 [dot-command]: https://www.sqlite.org/cli.html#special_commands_to_sqlite3_dot_commands_
 [csreq-gen]: https://stackoverflow.com/a/57259004

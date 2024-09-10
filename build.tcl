@@ -292,3 +292,9 @@ foreach path [glob posts/*.md] {
 
 # TODO: Optimize assets: add hashes, minify css, compress images, etc.
 file copy assets/ _build/
+
+# Apply for a category at girl.technology.
+file mkdir _build/.well-known
+set f [open _build/.well-known/girl.technology w]
+puts $f wolf
+close $f

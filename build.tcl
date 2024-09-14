@@ -201,6 +201,7 @@ proc page_html {path index} {
 		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
 		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
 		<script type=\"module\" src=\"/assets/scripts/favicon-anchors.js\"></script>
+		<link href=\"/atom.xml\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom feed of all blog posts\" />
 		$custom_css
 	</head>
 	<body>

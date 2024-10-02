@@ -88,7 +88,7 @@ how the dom is structured and how e.g. React work under the hood.
 
 [uwu]: https://github.com/linnnus/uwu
 
-i've also make [hellohtml].
+i've also made [hellohtml].
 itslike codepen except,, much worse.
 
 [hellohtml]: https://hellohtml.linus.onl/

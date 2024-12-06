@@ -198,6 +198,7 @@ proc page_html {path index} {
 		<meta charset=\"UTF-8\">
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
+		<meta property=\"og:title\" content=\"[?? [extract_markdown_title $path] "Unnamed page"]\">
 		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
 		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
 		<script type=\"module\" src=\"/assets/scripts/favicon-anchors.js\"></script>

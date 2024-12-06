@@ -4,7 +4,7 @@ pkgs.mkShell {
   name = "dev-shell";
   buildInputs = with pkgs; [
     # Used by build script
-    tcl-8_5
+    tcl
     tcl-cmark # From github.com/linnnus/nix-monorepo/pkgs/tcl-cmark
     git
     coreutils-full

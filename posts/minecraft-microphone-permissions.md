@@ -51,11 +51,11 @@ Yesterday I wanted to play Minecraft on a server
 that was using the [Simple Voice Chat plugin][svc].
 However, when I joined the server,
 I got a warning message about
-the Minecraft not having microphone permissions.
+the Minecraft launcher not having microphone permissions.
 This makes sense:
 MacOS applications have to explicitly request permissionto do stuff like listening to the microphone
 and the Minecraft launcher doesn't have any reason to request that permission
-so it doesn't have it!
+so it doesn't get it!
 
 The recommended solution on [Simple Voice Chat's wiki][svc-wiki] is to use a [Prism], a custom launcher.
 I didn't quite feel like installing and learning some random launcher just to fix this one issue
@@ -91,7 +91,7 @@ access_overrides  admin             policies
 ```
 
 The article also explained that the table we're mainly interested in is called `access`.
-We can see its schema using `.schema`.
+We can see its schema using the `.schema` command.
 Of note are the fields `service` and `client` which specify the permission and application respectively.
 See [the article][tcc-deepdive] for the meaning of the rest of the columns.
 
@@ -125,8 +125,6 @@ by inserting it in the `access` table
 as if the permission had been requested and granted by the user.
 We can do that with the following query:
 
-
-
 ```sql
 INSERT INTO access VALUES(
 	'kTCCServiceMicrophone',        -- service
@@ -151,7 +149,7 @@ INSERT INTO access VALUES(
 ```
 
 Generating a value for the `csreq` column was a little tricky.
-Luckily [this Stackoverflow post][csreq-gen] has the answer.
+Luckily, [this Stackoverflow post][csreq-gen] has the answer.
 It basically boils down to this[^csreq-explain]:
 
 ```sh
@@ -169,13 +167,15 @@ you have probably also noticed
 that the schema I found has a few more columns than the one in the article.
 I assume these have been added in later MacOS updates.
 When constructing my `INSERT` query, I just left the values as `NULL` and `'UNUSED'`
-because that what similar rows in the table seemed to be doing.
+because that's what similar rows in the table seemed to be doing.
 
-And that's pretty much it!
+Now I just needed to make the changes to the database take effect.
 I didn't know if/how I needed to restart TCC,
 so I just rebooted my computer.
+
 Afterwards I confirmed
 that Minecraft was now showing up under the microphone permission in settings.
+Yay, we did it!
 
 [svc]: https://modrinth.com/plugin/simple-voice-chat
 [svc-wiki]: https://modrepo.de/minecraft/voicechat/wiki/macos

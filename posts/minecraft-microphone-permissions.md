@@ -72,7 +72,8 @@ and it stores all its per-user data in a file located[^shvar] at
 This file is actually just an SQLite database
 which we can modify using a generic SQLite tool like `sqlite3`.
 
-; Don't put this footnote right after the path, as readers might accidentally include it when copying the path
+; Don't put this footnote right after the path, as readers might accidentally include it when copying the path.
+; It should be fixed by a rule for all a[data-footnote-ref] but I don't want to rely on it!
 [^shvar]: Here I'm using `$USER` as a place-holder for the current user's username.
 It should just be expanded when using it in Terminal.
 When doing so, be careful about the space in the path!

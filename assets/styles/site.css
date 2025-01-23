@@ -75,3 +75,8 @@ main { border-bottom: 2px solid; }
 	display: inline-block;
 	border: 1px solid;
 }
+
+/* Make sure footnotes aren't included when copy/pasting */
+a[data-footnote-ref] {
+  user-select: none;
+}

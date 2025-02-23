@@ -87,10 +87,11 @@ It works something like this:
 1. Filter for Danish entries.
 2. Filter for nouns and adjectives.
 3. Filter for words in the category "Danish lemmas".
-   This part solves removes entries like "væggene" which is derived from "væg".
+   This part removes entries like "væggene" which is derived from "væg".
 4. Ignore words with special characters in them like "12-talspige".
 5. Pick out the word and throw away all the metadata.
-   This last part works in conjunction with the flag `--raw-output`.
+   This last part works in conjunction with the flag `--raw-output`
+   which avoids quotes around the strings produced by the filter.
 
 (3) kind of makes (1) redundant, but I built the script iteratively
 and since it only has to run once (and be kind of slow either way)
@@ -105,7 +106,7 @@ changed the speed from 60MiB/s to 200GiB/s (as reported by `pv`).
 And that's it!
 Now I have a beautiful list of 8885 Danish words for password generation.
 My only snag with the wordlist is that it still contains some rather archaic words.
-If I can find some frequency data I might try to filter for the top X% of words.
+If I can find some frequency data I might try to filter for the top X% most common words.
 Either way, archaic *Danish* words are still a heck of a lot easier for me to remember than archaic *English* words.
 
 [wp-passphrase]: https://en.wikipedia.org/wiki/Passphrase

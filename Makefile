@@ -1,4 +1,4 @@
-_build: $(wildcard posts/* assets/* pages/*) build.tcl
+_build: $(wildcard src/**/*) build.tcl
 	tclsh build.tcl
 
 all: _build

@@ -80,15 +80,15 @@ proc render_markdown {markdown_source {env {}}} {
 # output. It turns...
 #
 # 	This is the first line.
-# 	<? x second
+# 	<? set x second
 # 	emit {this is the $x line.\n} ?>
 # 	This is the third line.
 #
 # ...into...
 #
 # 	emit {This is the first line.\n}
-# 	set x second 
-# 	emit {this is the $x line.\n} 
+# 	set x second
+# 	emit {this is the $x line.\n}
 # 	emit {This is the third line.\n}
 #
 proc parse src {
@@ -185,8 +185,9 @@ proc expand {src {env {}}} {
 #
 
 proc page_html {path index} {
-	set css_path assets/styles/[string map {pages/ "" .md ""} $path].css
-	if {[file exists $css_path]} {
+	global SOURCE
+	set css_path styles/[string map [list $SOURCE/ "" .md ""] $path].css
+	if {[file exists $SOURCE/$css_path]} {
 		set custom_css "<link rel=\"stylesheet\" href=\"/$css_path\">"
 	} else {
 		set custom_css ""
@@ -199,9 +200,9 @@ proc page_html {path index} {
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<title>[?? [extract_markdown_title $path] "Unnamed page"]</title>
 		<meta property=\"og:title\" content=\"[?? [extract_markdown_title $path] "Unnamed page"]\">
-		<link rel=\"stylesheet\" href=\"/assets/styles/site.css\">
-		<link rel=\"stylesheet\" href=\"/assets/styles/normalize.css\">
-		<script type=\"module\" src=\"/assets/scripts/favicon-anchors.js\"></script>
+		<link rel=\"stylesheet\" href=\"/styles/site.css\">
+		<link rel=\"stylesheet\" href=\"/styles/normalize.css\">
+		<script type=\"module\" src=\"/scripts/favicon-anchors.js\"></script>
 		<link href=\"/atom.xml\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom feed of all blog posts\" />
 		$custom_css
 	</head>
@@ -222,10 +223,11 @@ proc atom_xml index {
 	set url "$proto://$host/atom.xml"
 	set authorname "Linus"
 	set first_commit [exec git log --pretty=format:%ai . | cut -d " " -f1 | tail -1]
+	global SOURCE
 
 	append result "<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <feed xmlns=\"http://www.w3.org/2005/Atom\">
-	<title>[extract_markdown_title pages/index.md]</title>
+	<title>[extract_markdown_title $SOURCE/index.md]</title>
 	<link href=\"$url\" rel=\"self\" />
 	<updated>[exec date --iso=seconds]</updated>
 	<author>
@@ -234,11 +236,11 @@ proc atom_xml index {
 	<id>tag:$host,[normalize_git_timestamp $first_commit]:default-atom-feed</id>"
 
 	foreach post $index {
-		lassign $post path title id created updated
+		lassign $post path title id created updated href
 		if {$created eq "draft"} continue
 
 		set content [escape_html [render_markdown_file $path]]
-		set link $proto://$host/[string map {.md .html} $path]
+		set link $proto://$host$href
 		append result "
 	<entry>
 		<title>$title</title>
@@ -259,6 +261,7 @@ proc atom_xml index {
 #
 
 proc make_index directory {
+	global SOURCE
 	foreach path [glob $directory/*.md] {
 		set commit_times [exec git log --pretty=format:%aI $path 2>/dev/null]
 		set title   [?? [extract_markdown_title $path] "No title"]
@@ -266,37 +269,47 @@ proc make_index directory {
 		set id [file rootname [lindex [file split $path] end]]
 		set created [?? [lindex $commit_times end] "draft"]
 		set updated [?? [lindex $commit_times 0]   "draft"]
-		lappend index [list $path $title $id $created $updated]
+		set href [string map [list .md .html $SOURCE/ /] $path]
+		lappend index [list $path $title $id $created $updated $href]
 	}
 	return [lsort -index 3 -decreasing $index]
 }
 
-file delete -force _build
-file mkdir _build/posts
+set SOURCE ./src
+set BUILD ./_build
 
-set index [make_index posts]
+file delete -force $BUILD
+file mkdir $BUILD/posts
 
-puts [open _build/atom.xml w] [atom_xml $index]
+set index [make_index $SOURCE/posts]
+puts $index
 
-foreach path [glob pages/*.md] {
-	set out_path [string map {.md .html pages/ _build/} $path]
+puts [open $BUILD/atom.xml w] [atom_xml $index]
+
+# TODO: Find nested files like `$SOURCE/my-hobbies/index.md`.
+foreach path [glob $SOURCE/*.md] {
+	set out_path [string map [list .md .html $SOURCE/ $BUILD/] $path]
+	puts "Writing $path to $out_path..."
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f
 }
 
-foreach path [glob posts/*.md] {
-	set out_path [string map {.md .html posts/ _build/posts/} $path]
+foreach path [glob $SOURCE/posts/*.md] {
+	set out_path [string map [list .md .html $SOURCE/ $BUILD/] $path]
+	puts "Writing $path to $out_path..."
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f
 }
 
 # TODO: Optimize assets: add hashes, minify css, compress images, etc.
-file copy assets/ _build/
+file copy $SOURCE/images $BUILD/
+file copy $SOURCE/documents $BUILD/
+file copy $SOURCE/styles $BUILD/
 
 # Apply for a category at girl.technology.
-file mkdir _build/.well-known
-set f [open _build/.well-known/girl.technology w]
+file mkdir $BUILD/.well-known/
+set f [open $BUILD/.well-known/girl.technology w]
 puts $f programmer
 close $f

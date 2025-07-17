@@ -5,7 +5,7 @@ when the mouse hovers a link. I think it's kind of useful for checking where a
 link goes when I see text like "You can read more about that
 [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ)".
 
-![A screenshot of a blog post. The mouse hovers a link. A popup above the link shows the title and description of the page](/assets/images/hover-screenshot.png)
+![A screenshot of a blog post. The mouse hovers a link. A popup above the link shows the title and description of the page](/images/hover-screenshot.png)
 
 The thing is, it didn't take me very long to make this. An hour or two
 including setting up the user script manager and whatnot. However, the issue

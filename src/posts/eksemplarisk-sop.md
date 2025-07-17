@@ -17,5 +17,5 @@ Jeg løb lidt tør for tid, men det gjorde ikke det store,
 for man kommer jo netop op for at forsvare sin opgave!
 Her kunne jeg sagtens forklare hvad jeg *egentlig* mente.
 
-[sop]: ../assets/linus-sop-2024.pdf
+[sop]: ../documents/linus-sop-2024.pdf
 [^srp]: På STX hedder det vidst en SRP i stedet, men det er samme idé.

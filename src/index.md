@@ -8,7 +8,7 @@ that are too long for shitposts
 
 ; TODO: Use source-set to cut image for mobile devices
 ; https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
-![Two idiots on a tandem bike](/assets/images/bike.webp)
+![Two idiots on a tandem bike](/images/bike.webp)
 
 ## i write
 
@@ -21,12 +21,11 @@ anyways here are my <? emit [set n 3] ?> most recent posts:
 <?
     emitln <ul>
 
-	# NOTE: Should mostly match pages/archive.md
+	# NOTE: Should mostly match archive.md
     foreach post [lrange $param(index) 0 [expr $n - 1]] {
-		lassign $post path title id created updated
-        set link [string map {.md .html} $path]
+		lassign $post path title id created updated href
         emitln <li>
-        emitln "<a href=\"[escape_html $link]\">[escape_html $title]</a>"
+        emitln "<a href=\"[escape_html $href]\">[escape_html $title]</a>"
         emitln </li>
     }
 
@@ -41,12 +40,11 @@ and here are some posts i'm particularly proud of:
     emitln <ul>
 
     foreach post $param(index) {
-		lassign $post path title id created updated
+		lassign $post path title id created updated href
 
         if {[lsearch -exact $favs $id] >= 0} {
-            set link [string map {.md .html} $path]
             emitln <li>
-            emitln "<a href=\"[escape_html $link]\">[escape_html $title]</a>"
+            emitln "<a href=\"[escape_html $href]\">[escape_html $title]</a>"
             emitln </li>
         }
     }
@@ -57,7 +55,7 @@ and here are some posts i'm particularly proud of:
 you can see the full list of them over at [The Archive&trade;](/archive.html)
 or read them all as a huge blob in [the amalgamation](/amalgamation.html).
 
-[jake]: /assets/images/jake-sucking-at-something.gif
+[jake]: /images/jake-sucking-at-something.gif
 
 ## i write (the other kind)
 
@@ -106,8 +104,8 @@ etc.
 
 i also exist in other places on the cyberweb.
 
-; See assets/styles/index.css for cyberspace styling.
-; See assets/images/stars.gif for the background image.
+; See styles/index.css for cyberspace styling.
+; See images/stars.gif for the background image.
 <ul class="cyberspace">
     <li class="cyberspace__item" style="top: 20%; left: 10%;"><a class="cyberspace__item__link" href="https://cohost.org/linuwus/">Cohost.org</a></li>
     <li class="cyberspace__item" style="top: 44%; left: 70%;"><a class="cyberspace__item__link" href="https://github.com/linnnus/">GitHub</a></li>

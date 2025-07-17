@@ -202,7 +202,6 @@ proc page_html {path index} {
 		<meta property=\"og:title\" content=\"[?? [extract_markdown_title $path] "Unnamed page"]\">
 		<link rel=\"stylesheet\" href=\"/styles/site.css\">
 		<link rel=\"stylesheet\" href=\"/styles/normalize.css\">
-		<script type=\"module\" src=\"/scripts/favicon-anchors.js\"></script>
 		<link href=\"/atom.xml\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom feed of all blog posts\" />
 		$custom_css
 	</head>
@@ -263,7 +262,7 @@ proc atom_xml index {
 proc make_index directory {
 	global SOURCE
 	foreach path [glob $directory/*.md] {
-		set commit_times [exec git log --pretty=format:%aI $path 2>/dev/null]
+		set commit_times [exec git log --follow --pretty=format:%aI $path 2>/dev/null]
 		set title   [?? [extract_markdown_title $path] "No title"]
 		# NOTE: Filename becomes the slug, so make sure not to rename, when retitling!
 		set id [file rootname [lindex [file split $path] end]]

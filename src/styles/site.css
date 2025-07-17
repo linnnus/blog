@@ -68,14 +68,6 @@ img {
 section.footnotes { border-top: 2px solid; }
 main { border-bottom: 2px solid; }
 
-.favicon {
-	height: .7em;
-	width: auto;
-	margin-inline-start: .5ch;
-	display: inline-block;
-	border: 1px solid;
-}
-
 /* Make sure footnotes aren't included when copy/pasting */
 a[data-footnote-ref] {
   user-select: none;

@@ -70,7 +70,7 @@ one thing i *can* show is the [push notification api][pna].
 it provides a minimal http interface for dispatching notifications to ones mobile device.
 i use it to notify myself of failed cron jobs etc. on my server
 
-[pna]: http://notifications.linus.onl/
+[pna]: http://notifications.ibsenware.org/
 
 i also co-authored the [BuffCurrency] browser extension.
 it automatically convertes prices fron yuan to the users preferred currency on [buff].
@@ -89,7 +89,7 @@ how the dom is structured and how e.g. React work under the hood.
 i've also made [hellohtml].
 itslike codepen except,, much worse.
 
-[hellohtml]: https://hellohtml.linus.onl/
+[hellohtml]: https://hellohtml.ibsenware.org/
 
 ## you (can) write (to me)
 
@@ -100,7 +100,7 @@ a bad wording,
 a factual mistake,
 etc.
 
-[issue]: https://github.com/linnnus/linus.onl/issues/new
+[issue]: https://github.com/linnnus/blog/issues/new
 
 i also exist in other places on the cyberweb.
 
@@ -112,5 +112,5 @@ i also exist in other places on the cyberweb.
     <li class="cyberspace__item" style="top: 73%; left: 26%;"><a class="cyberspace__item__link" href="https://discord.gg/ADtHMjKdfB">the conlgang circle jerkle</a></li>
 </ul>
 
-this site is built with [`build.tcl`](https://github.com/linnnus/linus.onl).
+this site is built with [`build.tcl`](https://github.com/linnnus/blog).
 last rebuild was at <? emit [clock format [clock seconds] -format {%H:%M on %d/%m/%Y}] ?>.

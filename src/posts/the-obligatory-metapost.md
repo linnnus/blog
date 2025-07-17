@@ -118,7 +118,7 @@ emit .
 That code is then evaluated in a child interpreter, created with [`interp
 create`](https://wiki.tcl-lang.org/page/interp+create). All invocations of the
 `emit` procedure are then collected by
-[`collect_emissions`](https://github.com/linnnus/linus.onl/blob/b2f54c7478593662cc268cc5d50b5f61bc9e46c5/build.tcl#L115)
+[`collect_emissions`](https://github.com/linnnus/blog/blob/b2f54c7478593662cc268cc5d50b5f61bc9e46c5/build.tcl#L115)
 into the following result:
 
 ; Since we actually want to evaluate the <??>-block we have to emulate the HTML
@@ -136,7 +136,7 @@ The current time is <?
 
 This is the final markup which is passed through a markdown renderer[^cmark] to
 produce the final html. This whole procedure is encapsulated in
-[`render_markdown`](https://github.com/linnnus/linus.onl/blob/b2f54c7478593662cc268cc5d50b5f61bc9e46c5/build.tcl#L47).
+[`render_markdown`](https://github.com/linnnus/blog/blob/b2f54c7478593662cc268cc5d50b5f61bc9e46c5/build.tcl#L47).
 
 [^cmark]: Initially I was <abbr title="invoking an external command">shelling out</abbr> to
     [smu](https://github.com/karlb/smu/tree/bd03c5944b7146d07a88b58a2dd0d264836e3322)

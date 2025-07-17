@@ -210,7 +210,7 @@ proc page_html {path index} {
 		<main>[render_markdown_file $path [dict create index $index]]</main>
 		<footer>
 			<a href=\"/\">Go to index</a> |
-			Source available on <a href=\"https://github.com/linnnus/linus.onl\">Github</a> |
+			Source available on <a href=\"https://github.com/linnnus/blog\">Github</a> |
 			Made with &#x1F468;&#x200D;&#x1F9AF; by Linus
 		</footer>
 	</body>
@@ -218,7 +218,7 @@ proc page_html {path index} {
 }
 
 proc atom_xml index {
-	set host "linus.onl"
+	set host "ibsenware.org"
 	set proto http
 	set url "$proto://$host/atom.xml"
 	set authorname "Linus"

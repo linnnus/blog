@@ -1,22 +1,23 @@
 /* Site-wide styles. */
 
+:root {
+	--text-color: #373737;
+	--background-color: white;
+}
+
 body{
+	background-color: var(--background-color);
+	color: var(--text-color);
+
 	max-width: 60ch;
 	margin: 2rem auto;
-	padding: 0 10px;
+	padding: 0 20px;
 
 	line-height: 1.6;
-	font-size: 18px;
 	font-family: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
-
-	color: #A8F8EC;
-	background-color: #14574D;
 }
 
-h1, h2, h3{
-	line-height: 1.2;
-	font-family: "helvetica neue", helvetica, sans-serif;
-}
+h1, h2, h3 { line-height: 1.2; }
 
 footer {
 	text-align: center;
@@ -24,18 +25,34 @@ footer {
 	margin-block: 2rem;
 }
 
-a { color: white; }
-a:visited { color: inherit; }
+/** Don't want blue links! Single underline is pretty stylish? */
+a { color: inherit; }
+a:hover { text-decoration: none; }
 
 details, pre {
 	padding: 1rem;
-	border-radius: 7px;
-	background-color: #114941;
+		border-radius: 3px;
+	background-color: #eee;
 }
 details > pre { padding: 0; margin-bottom: 0; } /* HACK: avoid double spacing */
 details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
 details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
 details[open]   summary::marker { content: "👇\0000a0\0000a0"; }
+
+
+hr::after { /* Display three asterisks */
+	font-size: 20px;
+	color: #c6c6c6;
+
+	content: "✻\0000a0✻\0000a0✻";
+	display: block;
+	text-align: center;
+}
+hr {
+	margin-block: 20px;
+	height: auto;
+	border: 0;
+}
 
 pre {
 	overflow-x: auto;
@@ -62,13 +79,18 @@ img {
 		display: block;
 		margin-inline: auto;
 	}
+
+	/* When the body is too wide, there's a lot of negative space on the
+	 * sides and it looks weird that the content is pushing against the top
+	 * of the screen.
+	 *
+	 * This formula is very unscientific and could probably be improved. */
+	body {
+		margin-top: min(calc((100% - 60ch) / 2), 20vh);
+	}
 }
 
-/* separate sections */
-section.footnotes { border-top: 2px solid; }
-main { border-bottom: 2px solid; }
-
-/* Make sure footnotes aren't included when copy/pasting */
+/* Make sure footnote refs aren't included when copy/pasting */
 a[data-footnote-ref] {
   user-select: none;
 }

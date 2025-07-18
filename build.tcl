@@ -40,6 +40,11 @@ proc normalize_git_timestamp ts {
 	return [regsub T.* $ts {}]
 }
 
+proc format_git_timestamp ts {
+    return [string map {- /} [regsub T.* $ts {}]]
+}
+
+
 #
 # Post rendering
 #
@@ -149,11 +154,11 @@ proc collect_emissions {code {env {}}} {
 			append collect_emissions_result $txt
 		}
 
-		proc emitln txt { emit $txt\n }
+		proc emitln {{txt ""}} { emit $txt\n }
 	}
 
 	# HACK: Give it access to useful utilities.
-	foreach p [list escape_html ?? normalize_git_timestamp render_markdown_file] {
+	foreach p [list escape_html ?? normalize_git_timestamp format_git_timestamp render_markdown_file] {
 		interp alias $interpreter $p {} $p
 	}
 
@@ -185,6 +190,7 @@ proc expand {src {env {}}} {
 #
 
 proc page_html {path index} {
+	global DOMAIN
 	global SOURCE
 	set css_path styles/[string map [list $SOURCE/ "" .md ""] $path].css
 	if {[file exists $SOURCE/$css_path]} {
@@ -206,9 +212,9 @@ proc page_html {path index} {
 		$custom_css
 	</head>
 	<body>
-		<main>[render_markdown_file $path [dict create index $index]]</main>
+		[render_markdown_file $path [dict create index $index]]
 		<footer>
-			<a href=\"/\">Go to index</a> |
+			<a href=\"/\">$DOMAIN</a> |
 			Source available on <a href=\"https://github.com/linnnus/blog\">Github</a> |
 			Made with &#x1F468;&#x200D;&#x1F9AF; by Linus
 		</footer>
@@ -217,9 +223,9 @@ proc page_html {path index} {
 }
 
 proc atom_xml index {
-	set host "ibsenware.org"
+	global DOMAIN
 	set proto http
-	set url "$proto://$host/atom.xml"
+	set url "$proto://$DOMAIN/atom.xml"
 	set authorname "Linus"
 	set first_commit [exec git log --pretty=format:%ai . | cut -d " " -f1 | tail -1]
 	global SOURCE
@@ -232,20 +238,20 @@ proc atom_xml index {
 	<author>
 		<name>$authorname</name>
 	</author>
-	<id>tag:$host,[normalize_git_timestamp $first_commit]:default-atom-feed</id>"
+	<id>tag:$DOMAIN,[normalize_git_timestamp $first_commit]:default-atom-feed</id>"
 
 	foreach post $index {
 		lassign $post path title id created updated href
 		if {$created eq "draft"} continue
 
 		set content [escape_html [render_markdown_file $path]]
-		set link $proto://$host$href
+		set link $proto://$DOMAIN$href
 		append result "
 	<entry>
 		<title>$title</title>
 		<content type=\"html\">$content</content>
 		<link href=\"$link\" />
-		<id>tag:$host,[normalize_git_timestamp $created]:$id</id>
+		<id>tag:$DOMAIN,[normalize_git_timestamp $created]:$id</id>
 		<published>$created</published>
 		<updated>$updated</updated>
 	</entry>"
@@ -276,19 +282,18 @@ proc make_index directory {
 
 set SOURCE ./src
 set BUILD ./_build
+set DOMAIN "ibsenware.org"
 
 file delete -force $BUILD
 file mkdir $BUILD/posts
 
 set index [make_index $SOURCE/posts]
-puts $index
 
 puts [open $BUILD/atom.xml w] [atom_xml $index]
 
 # TODO: Find nested files like `$SOURCE/my-hobbies/index.md`.
 foreach path [glob $SOURCE/*.md] {
 	set out_path [string map [list .md .html $SOURCE/ $BUILD/] $path]
-	puts "Writing $path to $out_path..."
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f
@@ -296,7 +301,6 @@ foreach path [glob $SOURCE/*.md] {
 
 foreach path [glob $SOURCE/posts/*.md] {
 	set out_path [string map [list .md .html $SOURCE/ $BUILD/] $path]
-	puts "Writing $path to $out_path..."
 	set f [open $out_path w]
 	puts $f [page_html $path $index]
 	close $f

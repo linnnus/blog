@@ -1,3 +1,43 @@
+h1, h2, h3 {
+	text-align: center;
+}
+
+/**
+ * Table of contents
+ */
+
+.toc__row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: .5em;
+    align-items: baseline;
+
+    line-height: 1.8;
+}
+
+.toc__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.toc a { text-decoration: none; }
+.toc__row:hover .toc__title { text-decoration: underline; }
+
+.toc__separator {
+    display: inline-block;
+    height: 0;
+    border-bottom: 1px dotted var(--text-color);
+    min-width: 1em;
+}
+
+.toc__date {
+}
+
+/**
+ * Cyberspace
+ */
+
 .cyberspace {
 	/* Remove list styling */
 	list-style: none;

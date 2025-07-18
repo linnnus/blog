@@ -1,4 +1,4 @@
-_build: $(wildcard src/* src/**/*) build.tcl
+_build: $(shell find src lib) build.tcl
 	tclsh build.tcl
 
 all: _build

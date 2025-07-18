@@ -15,8 +15,7 @@ It's a terrible disease to have;
 the Nix user experience is horrible
 ("infinite recursion encountered" is the modern day [`?` error][ed])
 but there's no way in hell I'm ever going back to impure software.
-This must be what it feels like to be a Rust religioner
-:^)
+This must be what it feels like to be one of those enlightened Rust types <? smiley_nose ?>
 
 [ed]: https://en.wikipedia.org/wiki/Ed_(software)#Cultural_references
 
@@ -59,5 +58,4 @@ This must be what it feels like to be a Rust religioner
 I love to chat, so feel free to reach out!
 You can find my contact details over at my [contact page](/contact.html).
 I think the web would be a much more fun/social place
-if people were less hesitant in reaching out
-:^)
+if people were less hesitant in reaching out <? winky ?>

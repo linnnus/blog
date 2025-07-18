@@ -157,6 +157,10 @@ proc collect_emissions {code {env {}}} {
 		proc emitln {{txt ""}} { emit $txt\n }
 	}
 
+	foreach source_file [glob lib/*.tcl] {
+		interp eval $interpreter "source [list $source_file]"
+	}
+
 	# HACK: Give it access to useful utilities.
 	foreach p [list escape_html ?? normalize_git_timestamp format_git_timestamp render_markdown_file] {
 		interp alias $interpreter $p {} $p

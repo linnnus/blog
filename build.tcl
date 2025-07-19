@@ -105,6 +105,15 @@ proc parse src {
 		append result "emit [list [string range $src 0 $i]]\n"
 		set src [string range $src [expr {$i + 3}] end]
 
+		# If we encounter an equal sign right after the `<?' we take
+		# everything up until the matching `?>' as a single expression
+		# to be emitted.
+		set single_expression off
+		if {[string index $src 0] == "="} {
+			set src [string range $src 1 end]
+			set single_expression on
+		}
+
 		# Find matching ?>
 		if {[set i [string first ?> $src]] == -1} {
                         error "No matching ?>"
@@ -112,6 +121,7 @@ proc parse src {
 		incr i -1
 
 		# Add current command.
+		if {$single_expression} { append result "emit " }
 		append result "[string range $src 0 $i]\n"
                 set src [string range $src [expr {$i + 3}] end]
 	}

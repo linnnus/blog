@@ -1,3 +1,8 @@
+; Little helper which I can inspect to see if the webhook fired correctly.
+<!-- Rendered: <?= [clock format [clock seconds] -timezone UTC -format "%Y-%m-%dT%H:%M:%SZ"] ?> -->
+<!-- Commit: <?= [exec git rev-parse HEAD] ?> -->
+<!-- Dirty: <?= [exec sh -c {git diff-index --quiet HEAD ; echo $?}] ?> -->
+
 # Welcome!
 
 My name's Linus and you've found my little corner of the internet.

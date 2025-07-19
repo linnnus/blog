@@ -9,7 +9,7 @@ This blog will probably be mostly technical, though.
 
 So about the technical stuff:
 Right now I'm really into PL-dev and also trying to learn React
-without entirely loosing faith in the web as a platform.
+without entirely losing faith in the web as a platform.
 In 2022 I caught the Nix flu.
 It's a terrible disease to have;
 the Nix user experience is horrible

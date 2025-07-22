@@ -213,6 +213,17 @@ proc page_html {path index} {
 		set custom_css ""
 	}
 
+	set content [render_markdown_file $path [dict create index $index]]
+
+	if {[regexp {<pre><code} $content]} {
+		set prism_include {
+			<link rel="stylesheet" href="/styles/prism.min.css">
+			<script defer src="/scripts/prism.min.js"></script>
+		}
+	} else {
+		set prism_include ""
+	}
+
 	return "<!DOCTYPE html>
 <html>
 	<head>
@@ -224,9 +235,10 @@ proc page_html {path index} {
 		<link rel=\"stylesheet\" href=\"/styles/normalize.css\">
 		<link href=\"/atom.xml\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom feed of all blog posts\" />
 		$custom_css
+		$prism_include
 	</head>
 	<body>
-		[render_markdown_file $path [dict create index $index]]
+		$content
 		<footer>
 			<a href=\"/\">$DOMAIN</a> |
 			Source available on <a href=\"https://github.com/linnnus/blog\">Github</a> |
@@ -324,6 +336,7 @@ foreach path [glob $SOURCE/posts/*.md] {
 file copy $SOURCE/images $BUILD/
 file copy $SOURCE/documents $BUILD/
 file copy $SOURCE/styles $BUILD/
+file copy $SOURCE/scripts $BUILD/
 
 # Apply for a category at girl.technology.
 file mkdir $BUILD/.well-known/

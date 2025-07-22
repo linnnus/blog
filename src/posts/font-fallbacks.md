@@ -44,8 +44,8 @@ proc emit_fonts {fonts} {
 
         emitln "<p>To use [escape_html $name] on your webpage, copy the following CSS rule.</p>"
 
-		emitln "<pre><code>body {"
-		emitln "\tfont-family: $chain;"
+		emitln "<pre><code class=\"language-css\">body {"
+		emitln "    font-family: $chain;"
 		emitln "}</code></pre>"
 
 		emitln {<p>The following is an example of the font in use.</p>}

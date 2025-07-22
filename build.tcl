@@ -203,6 +203,37 @@ proc expand {src {env {}}} {
 # File generation
 #
 
+proc get_prism_includes {content_html} {
+	set result ""
+
+	set matches [regexp -all -inline {class="language-(\w+)} $content_html]
+	# "
+
+	# Boilerplate needs to go first since deferred scripts are still loaded in order.
+	if {[llength $matches] > 0} {
+		append result {
+			<link rel="stylesheet" href="/styles/prism.min.css">
+			<script defer src="/scripts/prism.min.js"></script>
+		}
+	}
+
+	set seen {}
+	foreach {_ language} $matches {
+		if {[lsearch -exact $seen $language] != -1} {
+			continue
+		}
+		lappend seen $language
+
+		global SOURCE
+		set script_path "scripts/prism.${language}.min.js"
+		if {[file exists $SOURCE/$script_path]} {
+			append result "<script defer src=\"/$script_path\"></script>"
+		}
+	}
+
+	return $result
+}
+
 proc page_html {path index} {
 	global DOMAIN
 	global SOURCE
@@ -215,14 +246,7 @@ proc page_html {path index} {
 
 	set content [render_markdown_file $path [dict create index $index]]
 
-	if {[regexp {<pre><code} $content]} {
-		set prism_include {
-			<link rel="stylesheet" href="/styles/prism.min.css">
-			<script defer src="/scripts/prism.min.js"></script>
-		}
-	} else {
-		set prism_include ""
-	}
+	set prism_include [get_prism_includes $content]
 
 	return "<!DOCTYPE html>
 <html>

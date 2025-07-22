@@ -5,7 +5,7 @@
 Recently, I was working on a [Deno] project which I wanted to package for Nix.
 Usually, when packaging a piece of software for Nix,
 there exists a language-specific `stdenv.mkDerivation` derivative
-which works to bridge the gap between between the langauge-specific package managers and Nix.
+which works to bridge the gap between between the language-specific package managers and Nix.
 These are functions like [`buildNpmPackage`][buildNpmPackage] and [`buildPythonPackage`][buildPythonPackage]
 but, alas, there is no `buildDenoPackage`.
 
@@ -92,7 +92,7 @@ here's an example.
 Suppose we have a simple program which just prints a random string.
 `main.ts` just contains:
 
-```typscript
+```typescript
 import { bgMagenta } from "https://deno.land/std@0.214.0/fmt/colors.ts";
 import { generate } from "https://esm.sh/randomstring";
 

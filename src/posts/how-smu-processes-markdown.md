@@ -57,8 +57,9 @@ else
     fputc(*p++, stdout);
 ```
 
-For example, here (in a few paragraphs, actually) is a function `dobold`
-which handles bold text (``like **this** text``):
+For example, here is a function `dobold`
+which handles bolded text
+(like "this" in the input ``like **this** text``):
 
 ```c
 int dobold(const char *begin, const char *end, bool newblock) {
@@ -93,13 +94,13 @@ int dobold(const char *begin, const char *end, bool newblock) {
 }
 ```
 
-Notice how we can just `return 0` to indicate
+Notice how can just `return 0` to indicate
 that `dobold` does not handle whatever the current input string is.
 This provides a sort of "infinite lookahead"
 which is super useful
 when parsing Markdown,
 because it has a very messy grammar
-that doesn't easily lend itself to parsing with limited lookahead.
+that doesn't lend itself to easily parsing with limited lookahead.
 
 An example of this "infinite lookahead" can be seen
 when `stop == NULL` after the loop,
@@ -110,10 +111,6 @@ would have consumed a lot of tokens which now couldn't be matched by subsequent 
 Instead of doing some complicated backtracking,
 `dobold` can simply `return 0`.
 I see this as a major strength of `smu`'s approach.
-
-Do also note that we invoke `process` here.
-This [mutual recursion] is what allows the parser
-to handle very complex nested structures with (relative) ease.
 
 Another strength is flexibility.
 `process` doesn't impose a big framework on any of the parsing functions
@@ -166,7 +163,6 @@ so when I made my parser
 I simply dictated that there had to be at least one blank line between all block-level elements,
 thus getting rid of the need for `end_paragraph()`!
 
-[mutual recursion]: https://en.wikipedia.org/wiki/Mutual_recursion
 [question]: https://web.archive.org/web/20250107034356/https://cohost.org/wffl/post/6136974-i-wonder-how-you-par
 [smu]: https://github.com/Gottox/smu
 [wiki-creole]: https://wikicreole.org

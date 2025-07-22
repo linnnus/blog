@@ -132,11 +132,6 @@ Doing this means it will be recognized by MacOS in various places.
 For example, when opening files in Finder it is now possible to choose NeoVim.
 I have set it as the default for all markdown files on my computer.
 
-A more robust – and probably all around better solution – would be to use [VimR].
-I have yet to test it, but I might replace this script with VimR in the future.
-
-[VimR]: <https://github.com/qvacua/vimr>
-
 ```Applescript
 on run {input, parameters}
 	if input is not {} then
@@ -163,3 +158,11 @@ on run {input, parameters}
 	end tell
 end run
 ```
+
+## Alternatives
+
+A more robust – and probably all around better solution – would be to use [VimR].
+I have yet to test it, but I might replace this script with VimR in the future.
+
+[VimR]: <https://github.com/qvacua/vimr>
+

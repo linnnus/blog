@@ -1,9 +1,9 @@
 # How smu parses Markdown
 
 A while ago, someone asked about parsing Markdown on Cohost.
-[Their original post][question] and my question is still online
+[Their original post][question] and my answer is still online
 but since Cohost has gone the way of the Dodo
-I wanted to repost it here on my blog.
+I wanted to repost it here on my blog:
 
 I'd like to explain how the [Suckless Project's markdown parser (`smu`)][smu] works
 because it works a little differently to how most other parsers I've seen work.

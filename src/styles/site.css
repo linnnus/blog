@@ -1,5 +1,9 @@
 /* Site-wide styles. */
 
+/*
+ * Typography
+ */
+
 :root {
 	--text-color: #373737;
 	--background-color: white;
@@ -9,55 +13,40 @@ body{
 	background-color: var(--background-color);
 	color: var(--text-color);
 
-	max-width: 60ch;
-	margin: 2rem auto;
-	padding: 0 20px;
-
 	line-height: 1.6;
 	font-family: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
 }
 
-h1, h2, h3 { line-height: 1.2; }
-
-footer {
-	text-align: center;
-	font-size: small;
-	margin-block: 2rem;
+/* Headings should be a little tighter */
+h1, h2, h3 {
+	line-height: 1.2;
 }
+
+/*
+ * Links
+ */
 
 /** Don't want blue links! Single underline is pretty stylish? */
 a { color: inherit; }
 a:hover { text-decoration: none; }
 
-details, pre {
-	padding: 1rem;
-		border-radius: 3px;
-	background-color: #eee;
+/* Make sure footnote refs aren't included when copy/pasting */
+a[data-footnote-ref] {
+  user-select: none;
 }
-details > pre { padding: 0; } /* HACK: avoid double spacing */
-details > *:last-child { margin-bottom: 0; }
-details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
-details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
-details[open]   summary::marker { content: "👇\0000a0\0000a0"; }
 
-
-hr::after { /* Display three asterisks */
-	font-size: 20px;
-	color: #c6c6c6;
-
-	content: "✻\0000a0✻\0000a0✻";
-	display: block;
-	text-align: center;
-}
-hr {
-	margin-block: 20px;
-	height: auto;
-	border: 0;
-}
+/*
+ * Code listings (see also prism.js styles!)
+ */
 
 pre {
 	overflow-x: auto;
 	line-height: 1;
+
+	/* NOTE: See also <details> which are styled similarly */
+	padding: 1rem;
+	border-radius: 3px;
+	background-color: #eee;
 }
 
 code {
@@ -69,18 +58,35 @@ code {
 	word-break: break-all;
 }
 
+/*
+ * Images
+ */
+
 img {
 	box-shadow: 4px 2px 8px 2px rgb(0 0 0 / 9%);
 	border-radius: 7px;
 	max-width: 100%;
 }
+
 @media all and (min-width: 700px) {
 	img {
 		max-width: 80%;
 		display: block;
 		margin-inline: auto;
 	}
+}
 
+/*
+ * Macro layout
+ */
+
+body {
+	max-width: 60ch;
+	margin: 2rem auto;
+	padding: 0 20px;
+}
+
+@media screen and (min-width: 700px) {
 	/* When the body is too wide, there's a lot of negative space on the
 	 * sides and it looks weird that the content is pushing against the top
 	 * of the screen.
@@ -91,7 +97,51 @@ img {
 	}
 }
 
-/* Make sure footnote refs aren't included when copy/pasting */
-a[data-footnote-ref] {
-  user-select: none;
+footer {
+	text-align: center;
+	font-size: small;
+	margin-block: 2rem;
+}
+
+/*
+ * Details
+ */
+
+details {
+	/* NOTE: See also <pre> which are styled similarly */
+	padding: 1rem;
+	border-radius: 3px;
+	background-color: #eee;
+}
+
+details > summary {
+	font-family: "helvetica neue", helvetica, sans-serif;
+}
+
+/* HACK: Avoid double spacing */
+details > pre { padding: 0; }
+details > *:last-child { margin-bottom: 0; }
+
+/* Custom marker */
+details       summary::marker { content: "👉\0000a0\0000a0"; }
+details[open] summary::marker { content: "👇\0000a0\0000a0"; }
+
+/*
+ * Separators
+ */
+
+/* Display three asterisks */
+hr::after {
+	font-size: 20px;
+	color: #c6c6c6;
+
+	content: "✻\0000a0✻\0000a0✻";
+	display: block;
+	text-align: center;
+}
+
+hr {
+	margin-block: 20px;
+	height: auto;
+	border: 0;
 }

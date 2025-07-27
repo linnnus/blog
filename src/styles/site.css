@@ -34,7 +34,8 @@ details, pre {
 		border-radius: 3px;
 	background-color: #eee;
 }
-details > pre { padding: 0; margin-bottom: 0; } /* HACK: avoid double spacing */
+details > pre { padding: 0; } /* HACK: avoid double spacing */
+details > *:last-child { margin-bottom: 0; }
 details > summary { font-family: "helvetica neue", helvetica, sans-serif; }
 details summary::marker { content: "👉\0000a0\0000a0"; /* HACK */ }
 details[open]   summary::marker { content: "👇\0000a0\0000a0"; }

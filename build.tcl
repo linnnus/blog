@@ -151,22 +151,6 @@ proc parse src {
 proc collect_emissions {code {env {}}} {
 	set interpreter [interp create]
 
-	# Set up `emit' and `emitln' so child interpreter can append to output
-	# variable. The output variable is extracted from the interpreter after
-	# the script has finished.
-	# TODO: Better naming that indicates what is safe vs. unsafe.
-	interp eval $interpreter {
-		global collect_emissions_result
-		set collect_emissions_result {}
-
-		proc emit txt {
-			global collect_emissions_result
-			append collect_emissions_result $txt
-		}
-
-		proc emitln {{txt ""}} { emit $txt\n }
-	}
-
 	foreach source_file [glob lib/*.tcl] {
 		interp eval $interpreter "source [list $source_file]"
 	}

@@ -3,7 +3,7 @@
 <!-- Commit: <?= [exec git rev-parse HEAD] ?> -->
 <!-- Dirty: <?= [exec /bin/sh -c {git diff-index --quiet HEAD ; echo $?}] ?> -->
 
-# Welcome!
+# Linus is online!
 
 My name's Linus and you've found my little corner of the internet.
 

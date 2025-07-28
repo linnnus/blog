@@ -19,7 +19,14 @@ I kept accidentally leaving the text fields,
 splitting/joining fields I didn't mean to,
 scrolling the wrong box within a box within a box.
 In general I found the whole experience really cramped...
-maybe it's just a matter of muscle memory,
+idk, maybe it's just a matter of muscle memory.
+
+I also found that I spent way more time "tinkering" with the code.
+Not actually making progress,
+just moving stuff around and making it look presentable.
+Coupled with the added friction of the development environment,
+this made for a very arduous and unenjoyable experience.
+Next time I'll probably just write a shell script.
 
 [prev]: ./xkcd-password-wordlist.md
 [nb]: ../documents/danish-wordlist/wordlist.html

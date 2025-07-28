@@ -28,5 +28,5 @@ Coupled with the added friction of the development environment,
 this made for a very arduous and unenjoyable experience.
 Next time I'll probably just write a shell script.
 
-[prev]: ./xkcd-password-wordlist.md
+[prev]: ./xkcd-password-wordlist.html
 [nb]: ../documents/danish-wordlist/wordlist.html

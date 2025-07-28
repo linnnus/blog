@@ -249,8 +249,7 @@ proc page_html {path index} {
 		$content
 		<footer>
 			<a href=\"/\">$DOMAIN</a> |
-			Source available on <a href=\"https://github.com/linnnus/blog\">Github</a> |
-			Made with &#x1F468;&#x200D;&#x1F9AF; by Linus
+			Source available on <a href=\"https://github.com/linnnus/blog\">Github</a>
 		</footer>
 	</body>
 </html>"

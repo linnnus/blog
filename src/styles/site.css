@@ -88,12 +88,12 @@ body {
 
 @media screen and (min-width: 700px) {
 	/* When the body is too wide, there's a lot of negative space on the
-	 * sides and it looks weird that the content is pushing against the top
+	 * sides and it looks weird that the content is pushing against the top/bottom
 	 * of the screen.
 	 *
 	 * This formula is very unscientific and could probably be improved. */
 	body {
-		margin-top: min(calc((100% - 60ch) / 2), 20vh);
+		margin-block: min(calc((100% - 60ch) / 2), 20vh);
 	}
 }
 

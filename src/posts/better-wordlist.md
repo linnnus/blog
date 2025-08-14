@@ -30,3 +30,24 @@ Next time I'll probably just write a shell script.
 
 [prev]: ./xkcd-password-wordlist.html
 [nb]: ../documents/danish-wordlist/wordlist.html
+
+<div style="display:flex;flex-direction: column;align-items: center;">
+    <script defer async>
+        (async (me) => {
+            const rawWords = await fetch("/documents/danish-wordlist/words.txt").then(r => r.text());
+            const words = rawWords.split("\n");
+            const random = () => { const a = new Uint32Array(1); crypto.getRandomValues(a); return a.at(0) / 4294967295; };
+            const pick = arr => arr[Math.floor(random() * arr.length)];
+            const upperCase = s => (s.length === 0) ? s : s[0].toUpperCase() + s.slice(1);
+            const password = () => new Array(4).fill(0).map(_ => upperCase(pick(words))).join("");
+            const generate$ = document.createElement("button");
+            generate$.addEventListener("click", _ => {
+                const result$ = document.createElement("p");
+                result$.textContent = password();
+                generate$.after(result$);
+            });
+            generate$.textContent = "Fyr mig et kodeord, gamle";
+            me.after(generate$);
+        })(document.currentScript);
+    </script>
+</div>

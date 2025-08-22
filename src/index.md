@@ -19,7 +19,7 @@ In 2022 I caught the Nix flu.
 It's a terrible disease to have;
 the Nix user experience is horrible
 ("infinite recursion encountered" is the modern day [`?` error][ed])
-but there's no way in hell I'm ever going back to impure software.
+but there's no way in hell I'm ever going back to impure builds.
 This must be what it feels like to be one of those enlightened Rust types <? winky ?>
 
 [ed]: https://en.wikipedia.org/wiki/Ed_(software)#Cultural_references

@@ -13,7 +13,7 @@ String.fromCharCode(...[..."b_dkil[`be6]cW_b$Yec"].map(c=>c.charCodeAt()+10))
 Otherwise I'm also on Discord as `.lignus`, I think.
 I dunno, I didn't really understand the switch from user codes.
 
-Just remember that I'm an actual real person. Look, I have a real face and a
-bike and everything:
+Please just remember that I'm an actual real person.
+Look, I have a real face and a bike and everything:
 
 ![Two guys sitting on a tandem bike](./images/bike.webp)

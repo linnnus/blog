@@ -53,9 +53,13 @@ diff --git lib/generators.nix
 Almost immediately upon opening the PR,
 @emilazy pointed out that this is technically a breaking change
 and `nixpkgs/lib` specifically as pretty strict backwards-compatibility guarantees.
-It turns out that some people in the wild
+It turns out that some people in the wild[^amp-example]
 were actually _relying_ on the non-escaping of XML characters
 by writing code like this:
+
+[^amp-example]: [Here](https://github.com/kittywitch/nixfiles/blob/5c7dc38a136c156aa48420c2c9ce3cf99e43e3d5/darwin/distributed.nix#L11)s an example.
+I found about 80 examples by searching GitHub for `langauge:Nix AND "&amp;&amp;"`.
+Keep in mind that this is _just_ public GitHub repositories and _just_ using this specific XML-entity.
 
 ```nix
 launchd.agents."some-daemon".serviceConfig.programArguments = [
@@ -66,12 +70,14 @@ launchd.agents."some-daemon".serviceConfig.programArguments = [
 ```
 
 Silently breaking their code
--- even if it happened at a release boundary --
+-- even if it happened at a version bump --
 was a no-go.
-Instead, we settled on a transitionary approach where
+Instead, we settled on a gradual approach where
 an argument `escape = false` was introduced (thus avoiding breakage) and
 a warning introduced to activate after a certain release
 to encourage users to migrate.
+Then later, it'll become the default behavior and
+`escape = true` will become a no-op.
 
 ```diff
 diff --git a/lib/generators.nix b/lib/generators.nix
@@ -123,12 +129,12 @@ when creating agents/daemons like in the example I showed above,
 so [I added some extra warnings][eval-warning] specifically to catch that.
 
 [^hm]: I also updated HM as it, together with nix-darwin,
-makes up the majority of actual use of `toPlist` in the wild.
+makes up the majority of the actual use of `toPlist` in the wild.
 The patches are basically identical.
 
 The PRs to the downstream projects were merged pretty quickly too.
 As of 21/08/2025 all the PRs have finally been merged
-and the roll-out should be complete in the 25.11 release.
+and the roll-out should be complete with the release of 25.11.
 
 ## Learnings
 

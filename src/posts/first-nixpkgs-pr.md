@@ -69,7 +69,16 @@ launchd.agents."some-daemon".serviceConfig.programArguments = [
 ];
 ```
 
-Silently breaking their code
+The option `launchd.agents` internally uses `toPlist` to generate the XML file which defines the agent.
+Since these daemons often need to wait for the Nix store to mount,
+it is a very common idiom to prefix the daemon invocation with
+`wait4path /nix/store &&`.
+As `&&` is not valid XML the solution was to
+write out the XML-entities manually in the Nix code `&amp;&amp;`.
+Obviously this results in double escaping with the new changes to `toPlist`
+which would break at runtime when launchd tries to read the generated XML-file.
+
+Silently breaking users' code
 -- even if it happened at a version bump --
 was a no-go.
 Instead, we settled on a gradual approach where

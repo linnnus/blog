@@ -12,7 +12,7 @@ and just `nix copy` the results.
 Alas, not even remote builds can't save this poor computer.
 Remote builds still require [instantiation] (i.e. evaluating a a `.nix` to a `.drv`) to happen locally
 and my poor baby completely locks up while trying to
-squeeze out the huge graph reduction that is evaluating my system configuation.
+squeeze out the huge [graph reduction] that is evaluating my system configuation.
 
 ; FIXME: Is Nix evaluation actually implemented with graph reduction?
 
@@ -83,7 +83,7 @@ we can SSH in and
 do both the instantiation _and_ building
 using the regular `nix build` command.
 This is the heart of the script and the thing which is either a total hack or a stroke of genius.
-The command `nix build` composes instantiation and realisation
+The command `nix build` composes instantiation & realisation
 and both are done on the remote machine,
 alleviating the computational burden of instantiation from the local machine.
 
@@ -114,7 +114,7 @@ The built system-configuration will contain a script called `switch-to-configura
 which does exactly what it says on the tin.
 However, it expects us to install the system profile first.
 At least that's what I gather from a quick reading of `nixos-rebuild`[^nixos-rebuild].
-As of NixOS/nixpkgs@35bd00d6c the relevant section is [lines 921 thru 979 of nixos-rebuild.sh][switch-to]
+As of NixOS/nixpkgs@35bd00d6c the relevant section is [lines 921 thru 979 of nixos-rebuild.sh][switch-to].
 
 ; FIXME: Hej jeg forstår ikke engelsk konjunktiv.
 [^nixos-rebuild]: `nixos-rebuild` is a _monster_ shell script.
@@ -139,6 +139,7 @@ If they come back to bite me in the ass,
 I'll update the script
 but for now its been working perfectly.
 
+[graph reduction]: https://amelia.how/posts/the-gmachine-in-detail.html
 [remote_build.sh]: ../documents/remote_build.sh
 [remote builds]: https://nix.dev/manual/nix/2.28/advanced-topics/distributed-builds.html
 [instantiation]: https://nix.dev/manual/nix/2.28/command-ref/nix-instantiate.html

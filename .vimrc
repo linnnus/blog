@@ -12,4 +12,7 @@ if exists("b:current_syntax") && b:current_syntax == "markdown"
 	syntax keyword specialCommenTodo TODO FIXME XXX NEXT TBD contained
 	hi link specialComment Comment
 	hi link specialCommenTodo Todo
+
+	" Editor support for this type of comment
+	set comments+=:;
 endif

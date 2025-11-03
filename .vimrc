@@ -8,5 +8,8 @@ if exists("b:current_syntax") && b:current_syntax == "markdown"
 	let b:current_syntax = "markdown"
 
 	" Special comment lines
-	syntax match Comment /^; .*$/
+	syntax region specialComment start=/^;/ end=/$/ contains=specialCommenTodo
+	syntax keyword specialCommenTodo TODO FIXME XXX NEXT TBD contained
+	hi link specialComment Comment
+	hi link specialCommenTodo Todo
 endif

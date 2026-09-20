@@ -4,7 +4,7 @@ If you wanna reach out to me, here's my email.
 I'm a little weary of bots finding it, so it's slightly obfuscated;
 paste the following code into [the JavaScript console][console] to get it!
 
-[console]: https://support.mockflow.com/article/how-to-open-browser-console
+[console]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction#opening_the_console
 
 ```javascript
 String.fromCharCode(...[..."b_dkil[`be6]cW_b$Yec"].map(c=>c.charCodeAt()+10))

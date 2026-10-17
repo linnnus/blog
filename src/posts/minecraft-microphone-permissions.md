@@ -160,7 +160,7 @@ REQ_HEX=$(xxd -p /tmp/csreq.bin  | tr -d '\n')
 echo "X'$REQ_HEX'"
 ```
 
-[^csreq-explain]: Look at [the Stackoverflow answer][csreq-explain] for an explanation of
+[^csreq-explain]: Look at [the Stackoverflow answer][csreq-gen] for an explanation of
 how the commands work.
 
 If you looked closely,
